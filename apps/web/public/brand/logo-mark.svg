@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- PixelForge mark: faceted P + pixel cluster -->
+  <rect x="6" y="6" width="8" height="8" rx="1" fill="#6EC1E4"/>
+  <rect x="16" y="6" width="8" height="8" rx="1" fill="#1E82A2"/>
+  <rect x="6" y="16" width="8" height="8" rx="1" fill="#1E82A2"/>
+  <!-- Stem -->
+  <path d="M18 14h16c10 0 18 7.5 18 17.5S44 49 34 49H18V14Z" fill="#011F55"/>
+  <!-- Facet highlight on bowl -->
+  <path d="M34 18c7.2 0 13 5.4 13 13.5S41.2 45 34 45h-6V18h6Z" fill="#1E82A2"/>
+  <path d="M34 22c4.8 0 8.5 3.6 8.5 9.5S38.8 41 34 41h-2V22h2Z" fill="#6EC1E4"/>
+  <!-- Inner cutout of P -->
+  <path d="M26 26h6c2.8 0 5 2.2 5 5.5S34.8 37 32 37h-6V26Z" fill="#0C1127"/>
+  <!-- Stem face -->
+  <rect x="18" y="14" width="8" height="40" fill="#1E82A2"/>
+  <rect x="18" y="14" width="4" height="40" fill="#6EC1E4" opacity="0.55"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" fill="none">
+  <rect width="280" height="64" fill="#0C1127"/>
+  <g transform="translate(0,0)">
+    <rect x="6" y="6" width="8" height="8" rx="1" fill="#6EC1E4"/>
+    <rect x="16" y="6" width="8" height="8" rx="1" fill="#1E82A2"/>
+    <rect x="6" y="16" width="8" height="8" rx="1" fill="#1E82A2"/>
+    <path d="M18 14h16c10 0 18 7.5 18 17.5S44 49 34 49H18V14Z" fill="#6EC1E4"/>
+    <path d="M34 18c7.2 0 13 5.4 13 13.5S41.2 45 34 45h-6V18h6Z" fill="#1E82A2"/>
+    <path d="M26 26h6c2.8 0 5 2.2 5 5.5S34.8 37 32 37h-6V26Z" fill="#0C1127"/>
+    <rect x="18" y="14" width="8" height="40" fill="#1E82A2"/>
+    <rect x="18" y="14" width="4" height="40" fill="#6EC1E4" opacity="0.7"/>
+  </g>
+  <text x="72" y="42" fill="#FFFFFF" font-family="Sora, Inter, system-ui, sans-serif" font-size="28" font-weight="600" letter-spacing="-0.02em">PixelForge</text>
+</svg>

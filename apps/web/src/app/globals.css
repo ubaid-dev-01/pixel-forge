@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme {
+  /* PixelForge brand palette */
+  --color-brand-navy: #0c1127;
+  --color-brand-deep: #011f55;
+  --color-brand-teal: #1e82a2;
+  --color-brand-light: #6ec1e4;
+
+  /* Light UI surfaces */
+  --color-bg: #f7f9fc;
+  --color-bg-elevated: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-2: #eef3f8;
+  --color-surface-3: #e2eaf2;
+  --color-surface-raised: #eef3f8;
+  --color-border: #d7e0ea;
+  --color-border-strong: #b8c7d6;
+
+  --color-text: #0c1127;
+  --color-text-primary: #0c1127;
+  --color-text-secondary: #3a4a63;
+  --color-text-muted: #6b7c93;
+  --color-text-subtle: #6b7c93;
+  --color-text-inverse: #f7f9fc;
+
+  --color-accent: #1e82a2;
+  --color-accent-hover: #176d89;
+  --color-accent-pressed: #011f55;
+  --color-accent-subtle: #e8f6fb;
+  --color-accent-fg: #ffffff;
+
+  --color-danger: #dc2626;
+  --color-danger-hover: #b91c1c;
+  --color-error: #dc2626;
+  --color-warning: #d97706;
+  --color-success: #16a34a;
+  --color-info: #6ec1e4;
+  --color-overlay: rgb(12 17 39 / 48%);
+
+  --font-sans: var(--font-sans-actual), Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-display-actual), Sora, Inter, system-ui, sans-serif;
+  --font-mono: var(--font-mono-actual), "SF Mono", Menlo, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-soft: 0 1px 2px rgba(12, 17, 39, 0.06);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --spacing: 1px;
+}
+
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100%;
+}
+
+body {
+  letter-spacing: -0.011em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-brand-light) 45%, transparent);
+  color: var(--color-brand-navy);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+.hairline {
+  border-color: var(--color-border);
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(to right, rgb(12 17 39 / 4%) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(12 17 39 / 4%) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.prose-measure {
+  max-width: 68ch;
+}

@@ -1,0 +1,35 @@
+{
+  "name": "pixel-forge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PixelForge — professional image and video restoration platform",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@pixelforge/web",
+    "dev:web": "npm run dev --workspace=@pixelforge/web",
+    "dev:api": "npm run dev --workspace=@pixelforge/api",
+    "dev:processor": "python -m uvicorn app.main:app --reload --app-dir services/processor --port 8090",
+    "build": "npm run build --workspace=@pixelforge/web && npm run build --workspace=@pixelforge/api",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present && npm run test:processor",
+    "test:all": "node scripts/test-all.mjs",
+    "test:processor": "python -m pytest services/processor/tests -q",
+    "test:e2e": "playwright test --config=tests/playwright.config.ts",
+    "test:e2e:ui": "playwright test --config=tests/playwright.config.ts --ui",
+    "test:e2e:headed": "playwright test --config=tests/playwright.config.ts --headed",
+    "generate:samples": "python scripts/generate_sample_media.py",
+    "fetch:samples": "python scripts/fetch_sample_photos.py"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "convex": "^1.46.0",
+    "jose": "^6.1.0"
+  }
+}

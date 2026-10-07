@@ -1,0 +1,247 @@
+import { TOOLS, type ToolId, type MediaKind } from "@pixelforge/types";
+
+export interface ToolDefinition {
+  id: ToolId;
+  kind: MediaKind;
+  slug: string;
+  label: string;
+  shortLabel: string;
+  description: string;
+  href: string;
+  category: "enhance" | "restore" | "cleanup" | "convert" | "video";
+  requiresModel: boolean;
+  modelIds: string[];
+  comingSoon?: boolean;
+}
+
+export const TOOL_CATALOG: ToolDefinition[] = [
+  {
+    id: TOOLS.IMAGE_UPSCALE,
+    kind: "image",
+    slug: "upscale",
+    label: "Image upscaler",
+    shortLabel: "Upscale",
+    description: "Increase resolution with Real-ESRGAN or a classical Lanczos resample you explicitly choose.",
+    href: "/tools/upscale",
+    category: "enhance",
+    requiresModel: false,
+    modelIds: ["realesrgan-x4plus", "lanczos"],
+  },
+  {
+    id: TOOLS.IMAGE_RESTORE,
+    kind: "image",
+    slug: "restore",
+    label: "Photo restoration",
+    shortLabel: "Restore",
+    description: "Repair compressed, noisy, or faded photographs with controlled Light / Balanced / Strong presets.",
+    href: "/tools/restore",
+    category: "restore",
+    requiresModel: false,
+    modelIds: ["realesrgan-x4plus", "gfpgan-1.4"],
+  },
+  {
+    id: TOOLS.FACE_RESTORE,
+    kind: "image",
+    slug: "face",
+    label: "Face restoration",
+    shortLabel: "Face",
+    description: "Restore detected faces with GFPGAN. Images without faces are rejected, not forced through the model.",
+    href: "/tools/face",
+    category: "restore",
+    requiresModel: true,
+    modelIds: ["gfpgan-1.4"],
+  },
+  {
+    id: TOOLS.BACKGROUND_REMOVE,
+    kind: "image",
+    slug: "background",
+    label: "Background removal",
+    shortLabel: "Background",
+    description: "Segment subject from background using BiRefNet, with U²-Net as a commercially licensed fallback.",
+    href: "/tools/background",
+    category: "enhance",
+    requiresModel: true,
+    modelIds: ["birefnet", "u2net"],
+  },
+  {
+    id: TOOLS.IMAGE_CLEANUP,
+    kind: "image",
+    slug: "cleanup",
+    label: "Image cleanup",
+    shortLabel: "Cleanup",
+    description: "Deterministic OpenCV/Pillow cleanup for noise, compression, mild blur, and color cast.",
+    href: "/tools/cleanup",
+    category: "cleanup",
+    requiresModel: false,
+    modelIds: [],
+  },
+  {
+    id: TOOLS.IMAGE_SHARPEN,
+    kind: "image",
+    slug: "sharpen",
+    label: "Sharpen",
+    shortLabel: "Sharpen",
+    description: "Unsharp mask with amount, radius, and threshold. Defaults avoid halos.",
+    href: "/tools/sharpen",
+    category: "cleanup",
+    requiresModel: false,
+    modelIds: [],
+  },
+  {
+    id: TOOLS.IMAGE_DENOISE,
+    kind: "image",
+    slug: "denoise",
+    label: "Denoise",
+    shortLabel: "Denoise",
+    description: "Non-local means denoise at low, medium, or high strength. Detail-preserving, not generative.",
+    href: "/tools/denoise",
+    category: "cleanup",
+    requiresModel: false,
+    modelIds: [],
+  },
+  {
+    id: TOOLS.IMAGE_COLOR,
+    kind: "image",
+    slug: "color",
+    label: "Color restoration",
+    shortLabel: "Color",
+    description: "Exposure, contrast, white balance, and tonal restoration. Not a general photo editor.",
+    href: "/tools/color",
+    category: "restore",
+    requiresModel: false,
+    modelIds: [],
+  },
+  {
+    id: TOOLS.IMAGE_CONVERT,
+    kind: "image",
+    slug: "convert",
+    label: "Format converter",
+    shortLabel: "Convert",
+    description: "Convert between JPG, PNG, WebP, and AVIF while preserving transparency where the format allows.",
+    href: "/tools/convert",
+    category: "convert",
+    requiresModel: false,
+    modelIds: [],
+  },
+  {
+    id: TOOLS.IMAGE_COMPRESS,
+    kind: "image",
+    slug: "compress",
+    label: "Image compressor",
+    shortLabel: "Compress",
+    description: "Reduce file size with a quality or target-size objective and a real before/after comparison.",
+    href: "/tools/compress",
+    category: "convert",
+    requiresModel: false,
+    modelIds: [],
+  },
+  {
+    id: TOOLS.VIDEO_UPSCALE,
+    kind: "video",
+    slug: "video-upscale",
+    label: "Video upscaler",
+    shortLabel: "Video upscale",
+    description: "Frame enhancement with audio preservation. 4K is enabled only when the worker reports enough memory.",
+    href: "/tools/video-upscale",
+    category: "video",
+    requiresModel: true,
+    modelIds: ["realesrgan-x4plus"],
+  },
+  {
+    id: TOOLS.VIDEO_DENOISE,
+    kind: "video",
+    slug: "video-denoise",
+    label: "Video denoise",
+    shortLabel: "Video denoise",
+    description: "Temporal-aware FFmpeg denoise. Avoids frame-to-frame flicker from independent still-image filters.",
+    href: "/tools/video-denoise",
+    category: "video",
+    requiresModel: false,
+    modelIds: [],
+  },
+  {
+    id: TOOLS.VIDEO_SHARPEN,
+    kind: "video",
+    slug: "video-sharpen",
+    label: "Video sharpen",
+    shortLabel: "Video sharpen",
+    description: "Controlled unsharp on video with conservative defaults.",
+    href: "/tools/video-sharpen",
+    category: "video",
+    requiresModel: false,
+    modelIds: [],
+  },
+  {
+    id: TOOLS.VIDEO_STABILIZE,
+    kind: "video",
+    slug: "video-stabilize",
+    label: "Video stabilization",
+    shortLabel: "Stabilize",
+    description: "vidstab analyze → transform → crop/pad. Low / Medium / High smoothing.",
+    href: "/tools/video-stabilize",
+    category: "video",
+    requiresModel: false,
+    modelIds: [],
+  },
+  {
+    id: TOOLS.VIDEO_INTERPOLATE,
+    kind: "video",
+    slug: "video-interpolate",
+    label: "Frame interpolation",
+    shortLabel: "Interpolate",
+    description: "True motion interpolation when a licensed model is present. Duplicated frames are never used as a fake.",
+    href: "/tools/video-interpolate",
+    category: "video",
+    requiresModel: true,
+    modelIds: ["rife"],
+    comingSoon: true,
+  },
+  {
+    id: TOOLS.VIDEO_CONVERT,
+    kind: "video",
+    slug: "video-convert",
+    label: "Video converter",
+    shortLabel: "Video convert",
+    description: "Remux or transcode to MP4 or WebM while preserving audio and aspect ratio.",
+    href: "/tools/video-convert",
+    category: "video",
+    requiresModel: false,
+    modelIds: [],
+  },
+  {
+    id: TOOLS.VIDEO_COMPRESS,
+    kind: "video",
+    slug: "video-compress",
+    label: "Video compressor",
+    shortLabel: "Video compress",
+    description: "CRF / bitrate constrained encodes with an estimated output size.",
+    href: "/tools/video-compress",
+    category: "video",
+    requiresModel: false,
+    modelIds: [],
+  },
+  {
+    id: TOOLS.VIDEO_THUMBNAIL,
+    kind: "video",
+    slug: "video-thumbnail",
+    label: "Thumbnail extraction",
+    shortLabel: "Thumbnails",
+    description: "Single frame, contact sheet, or best-frame selection from a video.",
+    href: "/tools/video-thumbnail",
+    category: "video",
+    requiresModel: false,
+    modelIds: [],
+  },
+];
+
+export function toolById(id: ToolId): ToolDefinition {
+  const tool = TOOL_CATALOG.find((item) => item.id === id);
+  if (!tool) {
+    throw new Error(`Unknown tool: ${id}`);
+  }
+  return tool;
+}
+
+export function toolBySlug(slug: string): ToolDefinition | undefined {
+  return TOOL_CATALOG.find((item) => item.slug === slug);
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+  <rect width="1000" height="700" fill="#b7a078"/>
+  <rect x="80" y="80" width="840" height="540" fill="#cbb892"/>
+  <path d="M140 500 L 860 220" stroke="#8a7048" stroke-width="40" opacity="0.25"/>
+  <path d="M200 200 H800 M200 280 H640" stroke="#8d7a55" stroke-width="8"/>
+  <text x="24" y="36" fill="#5a4a32" font-family="IBM Plex Mono, monospace" font-size="12">SAMPLE · SYNTHETIC FADED PRINT</text>
+</svg>

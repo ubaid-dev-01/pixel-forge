@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="48" viewBox="0 0 280 48" fill="none">
+  <rect x="4" y="10" width="28" height="28" stroke="#0a0a0b" stroke-width="1.4"/>
+  <path d="M4 16H2M10 10V8M32 16h2M26 10V8M4 32H2M10 38v2M32 32h2M26 38v2" stroke="#0a0a0b" stroke-width="1.4"/>
+  <rect x="22" y="28" width="4" height="4" fill="#c9a36a"/>
+  <text x="48" y="32" fill="#0a0a0b" font-family="IBM Plex Sans, Helvetica, Arial, sans-serif" font-size="16" letter-spacing="4.2">PIXELFORGE</text>
+</svg>

@@ -1,0 +1,17 @@
+
+---
+description: "Convex schema and function standards"
+globs: ["convex/**"]
+---
+# Schema
+- Every table includes userId or is traceable to a user via join
+- Binary files never live in Convex. Only storageId references
+- Job states: queued/validating/processing/finalizing/completed/failed/cancelled/expired
+
+# Query/Mutation safety
+- Every query obtains userId via ctx.auth.getUserIdentity() and filters on it
+- Admin operations use role checks and are never exposed to normal users
+- No external API calls inside mutations. Use scheduled functions
+---
+alwaysApply: true
+---

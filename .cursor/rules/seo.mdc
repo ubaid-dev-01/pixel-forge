@@ -1,0 +1,33 @@
+---
+description: "SEO requirements for PixelForge public pages"
+globs: ["apps/web/src/app/**/page.tsx", "apps/web/src/app/**/layout.tsx"]
+alwaysApply: false
+---
+# Every public page must export Metadata
+- title: 50-60 chars, format "Page — PixelForge"
+- description: 150-160 chars, action-oriented
+- openGraph + twitter card summary_large_image
+- alternates.canonical when production URL is known
+
+# Required files
+- app/sitemap.ts — dynamic sitemap
+- app/robots.ts — allow public, disallow /dashboard, /api, /admin, /overview, /history, /usage, /settings, /presets
+- app/opengraph-image.tsx — OG image
+- app/icon.tsx and app/apple-icon.tsx when practical
+
+# Structured data (JSON-LD)
+- SoftwareApplication on landing
+- FAQPage on FAQ section
+- BreadcrumbList on tool / docs pages
+
+# Content
+- Each tool page targets one primary keyword
+- H1 contains the keyword naturally
+- First 100 words include keyword + value proposition
+- Internal links: every tool page links to 2-3 related tools
+
+# Technical
+- Prefer next/image with descriptive alt
+- Primary content SSR or SSG — never client-only for SEO pages
+- Core Web Vitals targets: LCP < 2.5s, CLS < 0.1, INP < 200ms
+- Fonts via next/font with display swap

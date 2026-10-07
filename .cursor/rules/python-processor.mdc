@@ -1,0 +1,12 @@
+---
+description: "FastAPI processor standards"
+globs: ["services/processor/**"]
+alwaysApply: false
+---
+# Processor rules
+- Never talk to Convex. Never hold object-storage secret keys. Use signed URLs only.
+- Validate MIME + magic bytes before decode. Guard decompression bombs.
+- FFmpeg via argument arrays / create_subprocess_exec — never shell=True with user paths.
+- Missing models return MODEL_UNAVAILABLE. Zero faces return NO_FACES_DETECTED.
+- Do not ship BRIA RMBG. Prefer BiRefNet (MIT) with U²-Net fallback.
+- Lazy-load heavy models. Prefer CPU classical paths when GPU weights are absent.

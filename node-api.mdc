@@ -1,0 +1,20 @@
+---
+description: "Node/Express API gateway standards"
+globs: ["apps/api/**"]
+---
+# Request validation
+- Validate every request body with a Zod schema. Return 400 with field-level errors on failure
+- Presigned upload requests must verify the user session. Unauthenticated = 401
+- Download requests must verify the job belongs to the current user
+
+# Job management
+- Job creation returns jobId immediately. Do not wait for processing to complete
+- Timeouts are triggered via Convex scheduled functions or timers. Never sleep inside a request
+- Webhook endpoints verify signatures, then process asynchronously and return 200 immediately
+
+# Logging
+- Structured logging (pino/structlog) with requestId, jobId, userId, tool
+- Never log user file contents, tokens, or signed URLs
+---
+alwaysApply: true
+---

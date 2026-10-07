@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#1c1816"/>
+  <ellipse cx="400" cy="380" rx="170" ry="210" fill="#c4b09a"/>
+  <rect x="230" y="560" width="340" height="360" rx="20" fill="#8a7362"/>
+  <circle cx="340" cy="340" r="16" fill="#2b241f"/>
+  <circle cx="460" cy="340" r="16" fill="#2b241f"/>
+  <path d="M360 430 Q400 455 440 430" fill="none" stroke="#2b241f" stroke-width="5"/>
+  <text x="24" y="36" fill="#c9a36a" font-family="IBM Plex Mono, monospace" font-size="12">PREPROCESSED · DENOISE + CONTRAST OF THE SAME ARTWORK</text>
+</svg>

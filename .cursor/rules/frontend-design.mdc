@@ -1,0 +1,93 @@
+---
+description: "PixelForge light theme design system. Trustworthy, creative, premium."
+globs: ["apps/web/**/*.{ts,tsx,css}"]
+alwaysApply: false
+---
+# PixelForge Design Language — Light Theme
+
+## Core feeling
+Professional creative software. Trustworthy. Precise. Quiet confidence.
+The user must feel: "This team knows what they're doing."
+
+## NOT allowed
+- Purple/indigo neon gradients (the #1 AI template tell)
+- Glowing blobs behind headlines
+- Glass morphism everywhere
+- Random 3D spheres or abstract shapes
+- Excessive border-radius (>12px on cards, >8px on buttons)
+- Bouncy animations
+- Fake "AI sparkles" icons
+- Stock-photo hero images of people pointing at screens
+
+## Color tokens (define in `globals.css` as CSS variables)
+Light theme base:
+--color-bg: #fafafa
+--color-surface: #ffffff
+--color-surface-raised: #f5f5f4
+--color-border: #e5e5e3
+--color-border-strong: #d4d4d0
+
+Text:
+--color-text-primary: #1a1a1a
+--color-text-secondary: #52525b
+--color-text-muted: #8a8a93
+--color-text-inverse: #fafafa
+
+Brand palette (from identity guide):
+--color-brand-navy: #0C1127
+--color-brand-deep: #011F55
+--color-brand-teal: #1E82A2
+--color-brand-light: #6EC1E4
+
+Accent (single, restrained — teal from brand):
+--color-accent: #1E82A2
+--color-accent-hover: #176D89
+--color-accent-subtle: #E8F6FB
+
+Semantic:
+--color-success: #16a34a
+--color-warning: #d97706
+--color-error: #dc2626
+--color-info: #0284c7
+
+Dark theme (toggle only — light is default):
+--color-bg-dark: #0a0a0b
+--color-surface-dark: #141416
+--color-text-primary-dark: #f5f5f4
+
+## Spacing (8px grid, strict)
+Allowed values only: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128
+Reject any padding/margin that is not on this scale.
+Exception: touch targets may use 44px min height/width.
+
+## Typography rules
+- Body text: minimum 16px. 15px only in dense UI, never in reading flow
+- Line height: 1.6 for body, 1.2 for headings
+- Max line length: 68ch for paragraphs
+- Font weights: use 3 max (400, 500, 600). No 300
+- Headings: tighter tracking (-0.02em) and higher weight contrast
+
+## Buttons and controls
+- Primary: solid accent, white text, 8px radius, no gradient
+- Secondary: outline with --color-border-strong
+- Ghost: transparent, only visible on hover
+- Touch targets: minimum 44x44px
+- Focus ring: 2px solid --color-accent with 2px offset. Never `outline: none`
+
+## Cards and surfaces
+- Border: 1px solid --color-border
+- Shadow: `0 1px 2px rgba(0,0,0,0.04)`. No colored shadows
+- Radius: 10-12px max on cards, 8px max on buttons
+- Padding: 24px default, 32px for hero cards
+
+## Motion
+- Duration: 150ms micro, 250ms transitions
+- Easing: cubic-bezier(0.16, 1, 0.3, 1)
+- Respect prefers-reduced-motion
+- No forever-looping auto animations
+
+## Before/After viewer
+- Neutral gray backdrop (--color-surface-raised)
+- Slider: thin 2px line, small circle grip, high contrast
+- Labels: small caps, letter-spacing 0.05em, muted
+- Zoom: 25/50/100/200/Fit always visible

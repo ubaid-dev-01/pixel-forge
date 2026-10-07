@@ -1,0 +1,47 @@
+[project]
+name = "pixelforge-processor"
+version = "0.1.0"
+description = "PixelForge media processing worker"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.32.0",
+  "pydantic>=2.9.0",
+  "pydantic-settings>=2.6.0",
+  "pillow>=11.0.0",
+  "numpy>=2.0.0",
+  "opencv-python-headless>=4.10.0",
+  "httpx>=0.27.0",
+  "filetype>=1.2.0",
+  "structlog>=24.4.0",
+]
+
+[project.optional-dependencies]
+gpu = [
+  "torch>=2.4.0",
+  "torchvision>=0.19.0",
+  "gfpgan>=1.3.8",
+  "realesrgan>=0.3.0",
+  "facexlib>=0.3.0",
+  "basicsr>=1.4.2",
+]
+onnx = [
+  "onnxruntime>=1.19.0",
+  "rembg>=2.0.60",
+]
+dev = [
+  "pytest>=8.3.0",
+  "pytest-asyncio>=0.24.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]

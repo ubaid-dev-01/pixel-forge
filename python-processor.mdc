@@ -1,0 +1,24 @@
+---
+alwaysApply: true
+---
+description: "FastAPI processing service standards"
+globs: ["services/processor/**/*.py"]
+---
+# Types and contracts
+- Every public function needs full type annotations (params + return)
+- Use Pydantic v2 BaseModel for all API input/output
+- No `Any` unless accompanied by `# TODO: reason`
+
+# Async and I/O
+- I/O operations must be async def (model inference, file I/O, FFmpeg calls)
+- FFmpeg calls use asyncio.create_subprocess_exec. No shell=True
+- Model inference runs in an executor or dedicated thread pool. Do not block the event loop
+
+# Errors
+- No bare except. Catch specific exceptions or log and re-raise a domain error
+- Failures return structured errors (errorCode + userMessage). Never return stack traces
+
+# Model management
+- Lazy-load models. Do not load everything at startup
+- Check input dimensions before inference. Reject oversized inputs instead of attempting them
+---

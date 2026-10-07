@@ -1,0 +1,22 @@
+---
+alwaysApply: true
+---
+description: "Next.js App Router + TypeScript frontend standards"
+globs: ["apps/web/**/*.{ts,tsx}"]
+---
+# Components
+- Default to Server Components. Use "use client" only when browser APIs or interactivity are required
+- Wrap client components in Suspense with a meaningful fallback
+- No enums. Use `as const` objects
+- Folder names in kebab-case (e.g., before-after-viewer/)
+
+# Data
+- Server-side data fetching prefers the Convex server client
+- Client subscriptions use Convex useQuery. Do not poll job status manually
+- Validate all user input with Zod before sending to the API
+
+# Styling
+- Tailwind utilities only. No inline style except dynamic dimension math
+- Follow an 8px spacing grid
+- Colors come from design tokens. No hardcoded hex values
+---

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700">
+  <defs>
+    <pattern id="ck" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect width="24" height="24" fill="#1c1c1f"/>
+      <rect width="12" height="12" fill="#2a2a2e"/>
+      <rect x="12" y="12" width="12" height="12" fill="#2a2a2e"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="700" fill="url(#ck)"/>
+  <rect x="310" y="180" width="280" height="340" fill="#d8cfc3"/>
+  <rect x="330" y="200" width="240" height="180" fill="#1c1c1f"/>
+  <text x="24" y="36" fill="#c9a36a" font-family="IBM Plex Mono, monospace" font-size="12">SAMPLE · CHECKERBOARD = TRANSPARENCY · NOT LIVE SEGMENTATION</text>
+</svg>

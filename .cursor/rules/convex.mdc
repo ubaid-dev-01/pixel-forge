@@ -1,0 +1,11 @@
+---
+description: "Convex schema and query safety"
+globs: ["convex/**"]
+alwaysApply: false
+---
+# Convex rules
+- Every query/mutation that returns user data must filter by authenticated userId.
+- Store metadata only. Binaries stay in object storage.
+- Admin surfaces require profiles.role === "admin".
+- Job status updates from the API use a verified service secret on HTTP actions.
+- Never expose JWT private keys or storage secrets to the client.

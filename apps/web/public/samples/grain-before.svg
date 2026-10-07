@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#2a2622"/>
+  <ellipse cx="400" cy="380" rx="170" ry="210" fill="#6d6054"/>
+  <rect x="230" y="560" width="340" height="360" rx="20" fill="#4a4038"/>
+  <circle cx="340" cy="340" r="18" fill="#3a332c"/>
+  <circle cx="460" cy="340" r="18" fill="#3a332c"/>
+  <path d="M360 430 Q400 460 440 430" fill="none" stroke="#3a332c" stroke-width="6"/>
+  <g opacity="0.35">
+    <circle cx="80" cy="90" r="2" fill="#fff"/><circle cx="140" cy="220" r="1.5" fill="#fff"/>
+    <circle cx="700" cy="160" r="2" fill="#000"/><circle cx="620" cy="740" r="2" fill="#fff"/>
+    <circle cx="90" cy="800" r="1" fill="#000"/><circle cx="510" cy="120" r="2" fill="#000"/>
+  </g>
+  <text x="24" y="36" fill="#9a9790" font-family="IBM Plex Mono, monospace" font-size="12">SAMPLE · GENERATED PORTRAIT BLOCKS + GRAIN</text>
+</svg>

@@ -1,0 +1,23 @@
+---
+description: "PixelForge non-negotiable global constraints"
+alwaysApply: true
+---
+# Security red lines (violation = bug)
+- Never expose CONVEX_DEPLOYMENT, OBJECT_STORAGE_SECRET_KEY, or any server secret in frontend code
+- Never use subprocess(shell=True) with user input
+- Never trust file extensions alone. Validate MIME + magic bytes
+- All FFmpeg calls must use argument arrays (spawn/execa). No string concatenation
+- Cross-user data access is a security defect. Every Convex query must filter by userId
+
+# Architecture boundaries
+- The Python service never writes directly to Convex. State updates flow through the Node API
+- ProcessingProvider is the ONLY legal processing entry point. Routes must not call Python directly
+- Object storage secret key lives only in Node API env vars. Python reads/writes via signed URLs
+
+# Forbidden
+- No committed .env files
+- No fake progress bars or fake processing states
+- No heavy dependencies not declared in the architecture doc
+---
+alwaysApply: true
+---

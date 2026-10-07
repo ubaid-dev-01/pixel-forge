@@ -1,0 +1,37 @@
+---
+description: "Font families and typographic scale for PixelForge"
+globs: ["apps/web/**/*.{ts,tsx,css}"]
+alwaysApply: false
+---
+# Font Stack
+
+## Display / Headings / Logo
+Primary: **Sora** (Google Fonts) — logo wordmark and headlines.
+Fallback: Inter, system-ui, sans-serif.
+Rationale: brand identity guide — geometric, technical, modern.
+
+## Body / UI
+Primary: **Inter**.
+Fallback: system-ui, -apple-system, "Segoe UI", sans-serif.
+
+## Monospace
+Primary: JetBrains Mono.
+Fallback: "SF Mono", Menlo, monospace.
+
+## Load via next/font (never via `<link>`)
+
+## Scale
+- hero: clamp(2.5rem, 5vw, 4.5rem) / 1.1 / -0.03em
+- h1: 2.25rem / 1.15 / -0.02em
+- h2: 1.75rem / 1.2 / -0.02em
+- h3: 1.25rem / 1.3 / -0.01em
+- body-lg: 1.125rem / 1.6
+- body: 1rem / 1.6
+- small: 0.875rem / 1.5
+- caption: 0.75rem / 1.4 / +0.02em (uppercase only for labels)
+
+## Rules
+- Never more than 2 font families per page (display + body; mono only for metadata)
+- Headlines in Instrument Serif: sentence case, not ALL CAPS
+- Technical metadata (dimensions, file size, job ID) uses mono
+- No italics except genuine editorial emphasis

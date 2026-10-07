@@ -1,0 +1,1 @@
+"""PixelForge processing worker."""

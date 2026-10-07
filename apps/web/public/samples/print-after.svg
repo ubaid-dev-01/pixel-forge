@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+  <rect width="1000" height="700" fill="#1a1a1c"/>
+  <rect x="80" y="80" width="840" height="540" fill="#ece6d8"/>
+  <path d="M140 500 L 860 220" stroke="#3d4a38" stroke-width="40" opacity="0.55"/>
+  <path d="M200 200 H800 M200 280 H640" stroke="#1c1c1f" stroke-width="8"/>
+  <text x="24" y="36" fill="#c9a36a" font-family="IBM Plex Mono, monospace" font-size="12">PREPROCESSED · WHITE BALANCE AND CONTRAST OF THE SAME ARTWORK</text>
+</svg>
