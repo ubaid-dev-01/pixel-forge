@@ -196,3 +196,12 @@ Documented in [docs/licenses.md](docs/licenses.md) and `/legal/licenses`. GFPGAN
 ## License
 
 Apache-2.0 for PixelForge application code. Upstream models keep their own terms.
+
+## Documentation
+
+| Doc | Purpose |
+| --- | --- |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | System shape |
+| [docs/SETUP.md](docs/SETUP.md) | Local runbook |
+| [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | Contribution guide |
+
