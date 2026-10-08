@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useMemo, useState } from "react";
+import { use, useEffect, useMemo, useState } from "react";
 import { useAuthToken } from "@convex-dev/auth/react";
 import { useQuery } from "convex/react";
 import { toolBySlug, describeError } from "@pixelforge/shared";
@@ -24,6 +24,8 @@ export default function ToolPage({ params }: { params: Promise<{ slug: string }>
   const [jobId, setJobId] = useState<string | null>(null);
   const [error, setError] = useState<ReturnType<typeof describeError> | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const [outputUrl, setOutputUrl] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
   const [scale, setScale] = useState<1 | 2 | 4>(2);
   const job = useQuery(refs.jobsGet, jobId ? { jobId } : "skip");
 
@@ -32,16 +34,52 @@ export default function ToolPage({ params }: { params: Promise<{ slug: string }>
     return estimatedUpscaleSize(dims.width, dims.height, scale);
   }, [dims, scale]);
 
+  useEffect(() => {
+    if (!token || !job?.outputFileId || job.status !== "completed") {
+      setOutputUrl(null);
+      return;
+    }
+    let cancelled = false;
+    void (async () => {
+      try {
+        const res = await apiFetch<{ downloadUrl: string }>(
+          `/files/${job.outputFileId}/download`,
+          token,
+        );
+        if (!cancelled) setOutputUrl(res.downloadUrl);
+      } catch {
+        if (!cancelled) setOutputUrl(null);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [token, job?.outputFileId, job?.status]);
+
+  useEffect(() => {
+    if (job?.status === "failed") {
+      setError({
+        errorCode: (job.errorCode as ErrorCode) || ERROR_CODES.OUTPUT_FAILED,
+        userMessage: job.errorMessage || "Processing failed.",
+        action: "Try another image, or sign out and sign in again.",
+        retryable: true,
+      });
+    }
+  }, [job?.status, job?.errorCode, job?.errorMessage]);
+
   if (!tool) {
     return <p>Unknown tool.</p>;
   }
 
   async function start() {
     setError(null);
+    setOutputUrl(null);
+    setJobId(null);
     if (!token || !file || !tool) {
       setError(describeError(ERROR_CODES.UNAUTHORIZED));
       return;
     }
+    setBusy(true);
     try {
       const presign = await apiFetch<{ fileId: string; uploadUrl: string }>(
         "/uploads/presign",
@@ -65,7 +103,7 @@ export default function ToolPage({ params }: { params: Promise<{ slug: string }>
         setError(describeError(ERROR_CODES.STORAGE_ERROR));
         return;
       }
-      const created = await apiFetch<{ jobId: string }>(
+      const created = await apiFetch<{ jobId: string; status?: string }>(
         "/jobs",
         token,
         {
@@ -91,20 +129,19 @@ export default function ToolPage({ params }: { params: Promise<{ slug: string }>
           retryable: true,
         });
       } else if (caught instanceof TypeError) {
-        // Browser CORS / network failure on signed PUT — not the Python worker.
         setError(describeError(ERROR_CODES.STORAGE_ERROR));
       } else {
         setError({
           errorCode: ERROR_CODES.VALIDATION_FAILED,
           userMessage: "Upload or job create failed.",
-          action: "Confirm you are signed in, local S3 is on port 9000, and the API is on 8080.",
+          action: "Sign out and sign in again. On Vercel, Blob storage must be linked; locally run API + S3.",
           retryable: true,
         });
       }
+    } finally {
+      setBusy(false);
     }
   }
-
-  const outputUrl = job?.output ? undefined : undefined;
 
   return (
     <div className="mx-auto max-w-[1100px]">
@@ -140,8 +177,8 @@ export default function ToolPage({ params }: { params: Promise<{ slug: string }>
                 </Select>
               </Field>
             ) : null}
-            <Button onClick={() => void start()} disabled={!file}>
-              Process
+            <Button onClick={() => void start()} disabled={!file || busy || !token}>
+              {busy ? "Working…" : "Process"}
             </Button>
             {error ? (
               <div className="border border-danger p-16">
@@ -171,14 +208,27 @@ export default function ToolPage({ params }: { params: Promise<{ slug: string }>
               <div className="border border-border bg-surface p-48 text-text-muted">Output appears here after the worker finishes.</div>
             )}
             {job?.status === "completed" ? (
-              <dl className="grid grid-cols-2 gap-12 font-mono text-[12px] uppercase tracking-[0.12em] text-text-muted">
-                <div>Input {job.inputWidth}×{job.inputHeight}</div>
-                <div>Output {job.outputWidth}×{job.outputHeight}</div>
-                <div>In {job.inputSize} B</div>
-                <div>Out {job.outputSize} B</div>
-                <div>Time {job.processingTime} ms</div>
-                <div>Mode {job.processingMode}</div>
-              </dl>
+              <div className="flex flex-col gap-16">
+                <dl className="grid grid-cols-2 gap-12 font-mono text-[12px] uppercase tracking-[0.12em] text-text-muted">
+                  <div>Input {job.inputWidth}×{job.inputHeight}</div>
+                  <div>Output {job.outputWidth}×{job.outputHeight}</div>
+                  <div>In {job.inputSize} B</div>
+                  <div>Out {job.outputSize} B</div>
+                  <div>Time {job.processingTime} ms</div>
+                  <div>Mode {job.processingMode}</div>
+                </dl>
+                {outputUrl ? (
+                  <a
+                    className="inline-flex min-h-44 items-center justify-center rounded-[8px] bg-accent px-16 text-[14px] font-medium text-accent-fg"
+                    href={outputUrl}
+                    download
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Download output
+                  </a>
+                ) : null}
+              </div>
             ) : null}
           </div>
         </div>

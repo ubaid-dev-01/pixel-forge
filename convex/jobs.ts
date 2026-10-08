@@ -126,6 +126,77 @@ export const recent = query({
   },
 });
 
+/** Complete a job from the Next.js Vercel processor (user-owned, authenticated). */
+export const completeLocal = mutation({
+  args: {
+    jobId: v.id("jobs"),
+    status: v.union(v.literal("completed"), v.literal("failed"), v.literal("processing"), v.literal("finalizing")),
+    stage: v.optional(v.string()),
+    errorCode: v.optional(v.string()),
+    errorMessage: v.optional(v.string()),
+    output: v.optional(
+      v.object({
+        objectKey: v.string(),
+        mime: v.string(),
+        size: v.number(),
+        width: v.optional(v.number()),
+        height: v.optional(v.number()),
+      }),
+    ),
+    processingMode: v.optional(v.string()),
+    processingTime: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    const user = await requireUser(ctx);
+    const job = await ctx.db.get(args.jobId);
+    if (!job || job.userId !== user._id) {
+      throw new Error("FORBIDDEN");
+    }
+    const patch: Record<string, unknown> = {
+      status: args.status,
+      stage: args.stage,
+      errorCode: args.errorCode,
+      errorMessage: args.errorMessage,
+      processingMode: args.processingMode,
+      processingTime: args.processingTime,
+      processingProvider: "vercel",
+    };
+    if (args.status === "processing" && !job.startedAt) {
+      patch.startedAt = Date.now();
+    }
+    if (args.status === "completed" || args.status === "failed") {
+      patch.completedAt = Date.now();
+    }
+    if (args.output) {
+      const outputId = await ctx.db.insert("files", {
+        userId: job.userId,
+        objectKey: args.output.objectKey,
+        kind: "image",
+        role: "output",
+        mime: args.output.mime,
+        size: args.output.size,
+        originalName: "output",
+        width: args.output.width,
+        height: args.output.height,
+        createdAt: Date.now(),
+        expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
+      });
+      patch.outputFileId = outputId;
+      patch.outputWidth = args.output.width;
+      patch.outputHeight = args.output.height;
+      patch.outputSize = args.output.size;
+    }
+    await ctx.db.patch(job._id, patch);
+    if (args.status === "failed" && job.reservedUsage && !job.usageCommitted) {
+      await ctx.runMutation(internal.usage.refundReserved, { jobId: job._id });
+    }
+    if (args.status === "completed" && job.reservedUsage && !job.usageCommitted) {
+      await ctx.runMutation(internal.usage.commitReserved, { jobId: job._id });
+    }
+    return { ok: true };
+  },
+});
+
 export const requestCancel = mutation({
   args: { jobId: v.id("jobs") },
   handler: async (ctx, args) => {

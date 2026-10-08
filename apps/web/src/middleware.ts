@@ -37,6 +37,11 @@ export default convexAuthNextjsMiddleware(async (request, { convexAuth }) => {
   if (!process.env.NEXT_PUBLIC_CONVEX_URL) {
     return;
   }
+  const path = request.nextUrl.pathname;
+  // Never gate Blob upload / job / health routes — only pages + /api/auth.
+  if (path.startsWith("/api/") && !path.startsWith("/api/auth")) {
+    return;
+  }
   if (isProtectedRoute(request) && !(await convexAuth.isAuthenticated())) {
     return nextjsMiddlewareRedirect(request, "/signin");
   }
@@ -46,5 +51,5 @@ export default convexAuthNextjsMiddleware(async (request, { convexAuth }) => {
 });
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)"],
 };

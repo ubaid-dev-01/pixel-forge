@@ -14,11 +14,13 @@
     "@convex-dev/auth": "^0.0.90",
     "@pixelforge/shared": "0.1.0",
     "@pixelforge/types": "0.1.0",
+    "@vercel/blob": "^2.8.1",
     "convex": "^1.25.4",
     "geist": "^1.7.2",
     "next": "^15.5.4",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "sharp": "^0.35.5",
     "zod": "^3.25.76"
   },
   "devDependencies": {
@@ -27,6 +29,7 @@
     "@types/node": "^24.5.2",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
+    "@types/sharp": "^0.31.1",
     "eslint": "^9.36.0",
     "eslint-config-next": "^15.5.4",
     "tailwindcss": "^4.1.13",

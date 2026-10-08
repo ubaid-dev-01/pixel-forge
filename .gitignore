@@ -34,3 +34,6 @@ docker/minio-data
 .convex
 JWT_PRIVATE_KEY
 *.pem
+
+.vercel
+.env*

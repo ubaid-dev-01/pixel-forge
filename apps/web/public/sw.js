@@ -1,5 +1,5 @@
 /* PixelForge lightweight service worker — app-shell offline cache */
-const CACHE = "pixelforge-shell-v2";
+const CACHE = "pixelforge-shell-v3";
 const PRECACHE = ["/", "/brand/icon-192.png", "/brand/icon-512.png"];
 
 self.addEventListener("install", (event) => {
@@ -33,11 +33,12 @@ self.addEventListener("fetch", (event) => {
   }
 
   if (url.origin !== self.location.origin) return;
-  // Never intercept API / Convex / auth / Next internals
+  // Never intercept API / auth / Next internals / tools (live processing)
   if (
     url.pathname.startsWith("/api") ||
     url.pathname.startsWith("/gateway") ||
     url.pathname.startsWith("/_next") ||
+    url.pathname.startsWith("/tools") ||
     url.pathname.includes("convex")
   ) {
     return;
