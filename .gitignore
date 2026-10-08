@@ -41,3 +41,7 @@ JWT_PRIVATE_KEY
 .auth-signup.json
 .convex-dev-env.txt
 
+
+.auth-signup.json
+.convex-dev-env.txt
+
