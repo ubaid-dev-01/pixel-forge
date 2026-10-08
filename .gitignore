@@ -37,3 +37,7 @@ JWT_PRIVATE_KEY
 
 .vercel
 .env*
+
+.auth-signup.json
+.convex-dev-env.txt
+
