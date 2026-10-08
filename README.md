@@ -106,9 +106,19 @@ S3-compatible. Local: MinIO. Production: Cloudflare R2, AWS S3, or another S3 AP
 
 Deploy `services/processor/Dockerfile` to a GPU host (Modal, RunPod, a VM). Set `PROCESSING_PROVIDER=gpu-worker` and `PROCESSING_PROVIDER_URL` on the API. The UI does not know which adapter ran.
 
+## Deploy (Vercel — full stack)
+
+**Ek project** pe web + Express API + Python processor (Vercel Services). Storage ke liye Cloudflare R2. Step-by-step: [docs/VERCEL.md](docs/VERCEL.md).
+
 ## Testing
 
-Run everything from the repo root:
+Local stack health (API, worker, S3 CORS, web, unit tests):
+
+```bash
+npm run verify:stack
+```
+
+Full offline suite from the repo root:
 
 ```bash
 npm run test:all

@@ -14,6 +14,9 @@ export function createS3(env: ApiEnv): S3Client {
     region: env.OBJECT_STORAGE_REGION,
     endpoint: env.OBJECT_STORAGE_ENDPOINT,
     forcePathStyle: env.OBJECT_STORAGE_FORCE_PATH_STYLE,
+    // Avoid CRC32 checksum query params that break browser CORS preflight on local S3.
+    requestChecksumCalculation: "WHEN_REQUIRED",
+    responseChecksumValidation: "WHEN_REQUIRED",
     credentials: {
       accessKeyId: env.OBJECT_STORAGE_ACCESS_KEY,
       secretAccessKey: env.OBJECT_STORAGE_SECRET_KEY,

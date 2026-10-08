@@ -14,6 +14,7 @@ export const me = query({
       role: profile?.role ?? "user",
       plan: profile?.plan ?? "free",
       retention: profile?.retention ?? "7d",
+      disabledAt: profile?.disabledAt ?? null,
     };
   },
 });

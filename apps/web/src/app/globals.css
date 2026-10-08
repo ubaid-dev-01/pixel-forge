@@ -1,51 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Clarity+City:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
 @theme {
-  /* PixelForge brand palette */
+  /* Palette: Deep Navy · Primary Blue · Teal · Off White */
   --color-brand-navy: #0c1127;
   --color-brand-deep: #011f55;
   --color-brand-teal: #1e82a2;
-  --color-brand-light: #6ec1e4;
+  --color-brand-light: #fdfcfa;
 
-  /* Light UI surfaces */
-  --color-bg: #f7f9fc;
+  --color-bg: #fdfcfa;
   --color-bg-elevated: #ffffff;
   --color-surface: #ffffff;
-  --color-surface-2: #eef3f8;
-  --color-surface-3: #e2eaf2;
-  --color-surface-raised: #eef3f8;
-  --color-border: #d7e0ea;
-  --color-border-strong: #b8c7d6;
+  --color-surface-2: #f3f1ec;
+  --color-surface-3: #e8e6e0;
+  --color-surface-raised: #f3f1ec;
+  --color-border: #ddd9d1;
+  --color-border-strong: #c4bfb4;
 
   --color-text: #0c1127;
   --color-text-primary: #0c1127;
-  --color-text-secondary: #3a4a63;
-  --color-text-muted: #6b7c93;
-  --color-text-subtle: #6b7c93;
-  --color-text-inverse: #f7f9fc;
+  --color-text-secondary: #3a4158;
+  --color-text-muted: #5c6478;
+  --color-text-subtle: #858b9a;
+  --color-text-inverse: #fdfcfa;
 
   --color-accent: #1e82a2;
-  --color-accent-hover: #176d89;
+  --color-accent-hover: #176d88;
   --color-accent-pressed: #011f55;
-  --color-accent-subtle: #e8f6fb;
+  --color-accent-subtle: #e6f3f7;
   --color-accent-fg: #ffffff;
 
-  --color-danger: #dc2626;
-  --color-danger-hover: #b91c1c;
-  --color-error: #dc2626;
-  --color-warning: #d97706;
-  --color-success: #16a34a;
-  --color-info: #6ec1e4;
+  --color-danger: #c0392b;
+  --color-danger-hover: #a32f23;
+  --color-error: #c0392b;
+  --color-warning: #c4a035;
+  --color-success: #2f7d4a;
+  --color-info: #0b3f78;
   --color-overlay: rgb(12 17 39 / 48%);
 
-  --font-sans: var(--font-sans-actual), Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--font-display-actual), Sora, Inter, system-ui, sans-serif;
-  --font-mono: var(--font-mono-actual), "SF Mono", Menlo, monospace;
+  --font-sans: "Clarity City", ui-sans-serif, sans-serif;
+  --font-display: "Clarity City", ui-sans-serif, sans-serif;
+  --font-mono: var(--font-mono-actual), ui-monospace, monospace;
 
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 12px;
-  --shadow-soft: 0 1px 2px rgba(12, 17, 39, 0.06);
+  --shadow-soft: 0 1px 2px rgba(26, 22, 48, 0.06);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --spacing: 1px;
 }
@@ -55,6 +55,7 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
+  font-optical-sizing: auto;
   font-size: 16px;
   line-height: 1.6;
   min-height: 100%;
@@ -65,7 +66,7 @@ body {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--color-brand-light) 45%, transparent);
+  background: color-mix(in srgb, var(--color-brand-teal) 35%, transparent);
   color: var(--color-brand-navy);
 }
 
@@ -85,24 +86,193 @@ body {
   }
 }
 
+.font-sans {
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+}
+
 .font-display {
   font-family: var(--font-display);
+  font-optical-sizing: auto;
   letter-spacing: -0.02em;
   line-height: 1.15;
   font-weight: 600;
 }
 
-.hairline {
-  border-color: var(--color-border);
-}
-
-.grid-overlay {
-  background-image:
-    linear-gradient(to right, rgb(12 17 39 / 4%) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(12 17 39 / 4%) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
 .prose-measure {
   max-width: 68ch;
+}
+
+.pf-atmosphere {
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(ellipse 85% 50% at 0% 0%, rgb(30 130 162 / 12%), transparent 55%),
+    radial-gradient(ellipse 70% 45% at 100% 5%, rgb(11 63 120 / 10%), transparent 50%),
+    linear-gradient(rgb(12 17 39 / 3%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(12 17 39 / 3%) 1px, transparent 1px);
+  background-size:
+    auto,
+    auto,
+    48px 48px,
+    48px 48px;
+}
+
+.pf-grid-fade {
+  background-image:
+    linear-gradient(rgb(12 17 39 / 4%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(12 17 39 / 4%) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, black, transparent);
+}
+
+.pf-corner {
+  position: absolute;
+  z-index: 2;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  border-color: color-mix(in srgb, var(--color-brand-teal) 75%, white);
+}
+.pf-corner-tl {
+  top: 12px;
+  left: 12px;
+  border-top: 1.5px solid;
+  border-left: 1.5px solid;
+}
+.pf-corner-tr {
+  top: 12px;
+  right: 12px;
+  border-top: 1.5px solid;
+  border-right: 1.5px solid;
+}
+.pf-corner-bl {
+  bottom: 12px;
+  left: 12px;
+  border-bottom: 1.5px solid;
+  border-left: 1.5px solid;
+}
+.pf-corner-br {
+  right: 12px;
+  bottom: 12px;
+  border-right: 1.5px solid;
+  border-bottom: 1.5px solid;
+}
+
+.pf-scan {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgb(253 252 250 / 3%) 3px,
+    rgb(253 252 250 / 3%) 4px
+  );
+  animation: pf-scan-drift 12s linear infinite;
+}
+
+@keyframes pf-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pf-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pf-sheen {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes pf-scan-drift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(24px);
+  }
+}
+
+@keyframes pf-frame-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px) rotate(var(--pf-rot, 0deg));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--pf-rot, 0deg));
+  }
+}
+
+.pf-frame-rise {
+  animation: pf-frame-rise 0.9s var(--ease-out) both;
+}
+
+@keyframes pf-line-in {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.pf-line-in {
+  transform-origin: left center;
+  animation: pf-line-in 0.9s var(--ease-out) 0.2s both;
+}
+
+.pf-rise {
+  animation: pf-rise 0.85s var(--ease-out) both;
+}
+
+.pf-rise-delay {
+  animation: pf-rise 0.95s var(--ease-out) 0.1s both;
+}
+
+.pf-fade-in {
+  animation: pf-fade 1s var(--ease-out) 0.18s both;
+}
+
+.pf-sheen {
+  animation: pf-sheen 3.6s ease-in-out infinite;
+}
+
+@keyframes pf-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.pf-marquee {
+  animation: pf-marquee 28s linear infinite;
+}
+
+.pf-giant {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+  text-transform: uppercase;
 }

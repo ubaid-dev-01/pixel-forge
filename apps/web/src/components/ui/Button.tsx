@@ -32,8 +32,8 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = [
-    "inline-flex min-h-44 min-w-44 items-center justify-center gap-8 px-16 text-[15px] tracking-[0.01em]",
-    "transition-colors duration-[150ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+    "inline-flex min-h-44 min-w-44 items-center justify-center gap-8 px-16 text-[15px] font-medium tracking-[-0.01em]",
+    "transition-[color,background-color,border-color] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]",
     "disabled:cursor-not-allowed",
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
     variants[variant],

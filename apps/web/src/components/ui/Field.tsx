@@ -18,7 +18,11 @@ export function Field({
     <label className="flex flex-col gap-8">
       <span className="text-[12px] uppercase tracking-[0.16em] text-text-muted">{label}</span>
       {children}
-      {error ? <span className="text-[14px] text-danger">{error}</span> : hint ? <span className="text-[14px] text-text-subtle">{hint}</span> : null}
+      {error ? (
+        <span className="text-[14px] text-danger">{error}</span>
+      ) : hint ? (
+        <span className="text-[14px] text-text-subtle">{hint}</span>
+      ) : null}
     </label>
   );
 }

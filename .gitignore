@@ -28,6 +28,8 @@ apps/api/dist
 services/processor/.venv
 services/processor/model_cache
 services/processor/tmp
+tools/s3-data
+tools/minio
 docker/minio-data
 .convex
 JWT_PRIVATE_KEY

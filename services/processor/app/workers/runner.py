@@ -36,16 +36,20 @@ def sign_body(body: str) -> str:
 
 async def notify(webhook_url: str, payload: dict[str, Any]) -> None:
     body = json.dumps(payload, separators=(",", ":"))
-    async with httpx.AsyncClient(timeout=20.0) as client:
-        await client.post(
-            webhook_url,
-            content=body,
-            headers={
-                "content-type": "application/json",
-                "x-pixelforge-signature": sign_body(body),
-                "authorization": f"Bearer {settings.processor_auth_token}",
-            },
-        )
+    try:
+        async with httpx.AsyncClient(timeout=8.0) as client:
+            await client.post(
+                webhook_url,
+                content=body,
+                headers={
+                    "content-type": "application/json",
+                    "x-pixelforge-signature": sign_body(body),
+                    "authorization": f"Bearer {settings.processor_auth_token}",
+                },
+            )
+    except Exception:
+        # Processing must continue even if status webhooks fail.
+        log.warning("webhook.notify_failed", job_id=payload.get("jobId"), url=webhook_url)
 
 
 async def run_job(request: ProcessJobRequest, provider_job_id: str) -> None:

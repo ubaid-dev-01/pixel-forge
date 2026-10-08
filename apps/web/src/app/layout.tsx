@@ -1,24 +1,11 @@
-import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Sora } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { JetBrains_Mono } from "next/font/google";
 import { ConvexClientProvider } from "@/components/providers/ConvexClientProvider";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
+import { PwaProvider } from "@/components/pwa/PwaProvider";
 import "./globals.css";
 
 const SITE_URL = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
-
-const sans = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-sans-actual",
-  display: "swap",
-});
-
-const display = Sora({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-display-actual",
-  display: "swap",
-});
 
 const mono = JetBrains_Mono({
   subsets: ["latin"],
@@ -26,6 +13,16 @@ const mono = JetBrains_Mono({
   variable: "--font-mono-actual",
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#7357D8" },
+    { media: "(prefers-color-scheme: dark)", color: "#1A1630" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -44,7 +41,22 @@ export const metadata: Metadata = {
     "video enhancement",
     "PixelForge",
   ],
-  icons: { icon: "/brand/favicon.svg", apple: "/brand/favicon.svg" },
+  icons: {
+    icon: [
+      { url: "/brand/favicon.svg" },
+      { url: "/brand/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/brand/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/brand/icon-192.png", sizes: "192x192" }],
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "PixelForge",
+  },
+  formatDetection: {
+    telephone: false,
+  },
   openGraph: {
     type: "website",
     siteName: "PixelForge",
@@ -79,8 +91,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   );
 
   return (
-    <html lang="en" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
-      <body className={`${sans.className} antialiased`}>{tree}</body>
+    <html lang="en" className={mono.variable}>
+      <body className="font-sans antialiased">
+        {tree}
+        <PwaProvider />
+      </body>
     </html>
   );
 }

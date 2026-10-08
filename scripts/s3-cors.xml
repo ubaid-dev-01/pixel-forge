@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration>
+  <CORSRule>
+    <AllowedOrigin>http://localhost:3000</AllowedOrigin>
+    <AllowedOrigin>http://127.0.0.1:3000</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>PUT</AllowedMethod>
+    <AllowedMethod>POST</AllowedMethod>
+    <AllowedMethod>HEAD</AllowedMethod>
+    <AllowedMethod>DELETE</AllowedMethod>
+    <MaxAgeSeconds>3000</MaxAgeSeconds>
+    <AllowedHeader>*</AllowedHeader>
+    <ExposeHeader>ETag</ExposeHeader>
+    <ExposeHeader>x-amz-request-id</ExposeHeader>
+  </CORSRule>
+</CORSConfiguration>

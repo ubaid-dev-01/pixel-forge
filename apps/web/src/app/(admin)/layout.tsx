@@ -1,3 +1,5 @@
+import { AppShell } from "@/components/layout/AppShell";
+
 export const dynamic = "force-dynamic";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -8,5 +10,5 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </main>
     );
   }
-  return children;
+  return <AppShell>{children}</AppShell>;
 }

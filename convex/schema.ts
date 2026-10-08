@@ -22,6 +22,7 @@ export default defineSchema({
     role: v.union(v.literal("user"), v.literal("admin")),
     plan: v.union(v.literal("free"), v.literal("pro"), v.literal("team")),
     retention: v.union(v.literal("24h"), v.literal("7d"), v.literal("30d")),
+    disabledAt: v.optional(v.union(v.number(), v.null())),
     createdAt: v.number(),
   })
     .index("by_user", ["userId"])
@@ -135,4 +136,12 @@ export default defineSchema({
     reason: v.optional(v.string()),
     checkedAt: v.number(),
   }).index("by_provider", ["provider"]),
+
+  featureFlags: defineTable({
+    key: v.string(),
+    enabled: v.boolean(),
+    description: v.optional(v.string()),
+    updatedAt: v.number(),
+    updatedBy: v.optional(v.id("users")),
+  }).index("by_key", ["key"]),
 });

@@ -60,17 +60,21 @@ function maybeAuth(req: AuthedRequest, res: express.Response, next: express.Next
 }
 
 app.use("/api", maybeAuth, router);
-app.post("/webhooks/provider", router);
 
-const server = app.listen(env.API_PORT, env.API_HOST, () => {
-  logger.info({ port: env.API_PORT, provider: env.PROCESSING_PROVIDER }, "api.listening");
-});
+// Vercel Express / Services: export the app (no listen). Local `npm run dev` still listens.
+export default app;
 
-function shutdown(signal: string) {
-  logger.info({ signal }, "api.shutdown");
-  server.close(() => process.exit(0));
-  setTimeout(() => process.exit(1), 10_000).unref();
+if (!process.env.VERCEL) {
+  const server = app.listen(env.API_PORT, env.API_HOST, () => {
+    logger.info({ port: env.API_PORT, provider: env.PROCESSING_PROVIDER }, "api.listening");
+  });
+
+  function shutdown(signal: string) {
+    logger.info({ signal }, "api.shutdown");
+    server.close(() => process.exit(0));
+    setTimeout(() => process.exit(1), 10_000).unref();
+  }
+
+  process.on("SIGTERM", () => shutdown("SIGTERM"));
+  process.on("SIGINT", () => shutdown("SIGINT"));
 }
-
-process.on("SIGTERM", () => shutdown("SIGTERM"));
-process.on("SIGINT", () => shutdown("SIGINT"));

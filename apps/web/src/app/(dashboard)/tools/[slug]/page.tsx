@@ -58,7 +58,7 @@ export default function ToolPage({ params }: { params: Promise<{ slug: string }>
       );
       const put = await fetch(presign.uploadUrl, {
         method: "PUT",
-        headers: { "content-type": file.type },
+        headers: { "content-type": file.type || "application/octet-stream" },
         body: file,
       });
       if (!put.ok) {
@@ -80,11 +80,26 @@ export default function ToolPage({ params }: { params: Promise<{ slug: string }>
       setJobId(created.jobId);
       setPreview(URL.createObjectURL(file));
     } catch (caught) {
-      const payload = caught as { errorCode?: string };
+      const payload = caught as { errorCode?: string; userMessage?: string; action?: string };
       if (payload.errorCode && isErrorCode(payload.errorCode)) {
         setError(describeError(payload.errorCode as ErrorCode));
+      } else if (payload.userMessage) {
+        setError({
+          errorCode: ERROR_CODES.VALIDATION_FAILED,
+          userMessage: payload.userMessage,
+          action: payload.action ?? "Sign out and sign in again, then retry.",
+          retryable: true,
+        });
+      } else if (caught instanceof TypeError) {
+        // Browser CORS / network failure on signed PUT — not the Python worker.
+        setError(describeError(ERROR_CODES.STORAGE_ERROR));
       } else {
-        setError(describeError(ERROR_CODES.PROVIDER_UNAVAILABLE));
+        setError({
+          errorCode: ERROR_CODES.VALIDATION_FAILED,
+          userMessage: "Upload or job create failed.",
+          action: "Confirm you are signed in, local S3 is on port 9000, and the API is on 8080.",
+          retryable: true,
+        });
       }
     }
   }

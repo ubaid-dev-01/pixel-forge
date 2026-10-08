@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" fill="none" role="img" aria-label="PixelForge Identity System">
+  <rect width="1600" height="1000" fill="#FDFCFA"/>
+
+  <!-- subtle technical grid -->
+  <g stroke="#0C1127" stroke-opacity="0.035" stroke-width="1">
+    <path d="M80 0V1000M160 0V1000M240 0V1000M320 0V1000M400 0V1000M480 0V1000M560 0V1000M640 0V1000M720 0V1000M800 0V1000M880 0V1000M960 0V1000M1040 0V1000M1120 0V1000M1200 0V1000M1280 0V1000M1360 0V1000M1440 0V1000M1520 0V1000"/>
+    <path d="M0 80H1600M0 160H1600M0 240H1600M0 320H1600M0 400H1600M0 480H1600M0 560H1600M0 640H1600M0 720H1600M0 800H1600M0 880H1600M0 960H1600"/>
+  </g>
+
+  <text x="64" y="56" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="600" letter-spacing="0.18em">PIXELFORGE · IDENTITY SYSTEM</text>
+  <text x="1536" y="56" fill="#0C1127" fill-opacity="0.45" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="500" letter-spacing="0.08em" text-anchor="end">PRECISION · RESTORATION · ENGINEERING</text>
+
+  <!-- ===== PRIMARY LOGO ===== -->
+  <text x="64" y="110" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.14em">PRIMARY LOGO</text>
+  <g transform="translate(64,130)">
+    <path fill="#011F55" d="M13 10h14a7 7 0 0 1 7 7v13h-4v4h4v13a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V17a7 7 0 0 1 7-7z"/>
+    <path fill="#0B3F78" d="M43 10h7l6 6v7a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5v-8a5 5 0 0 1 5-5z"/>
+    <rect x="38" y="32" width="18" height="22" rx="5" fill="#0B3F78"/>
+    <rect x="30" y="30" width="8" height="4" rx="1" fill="#1E82A2"/>
+    <text x="80" y="42" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="36" font-weight="600" letter-spacing="-0.03em">PixelForge</text>
+  </g>
+
+  <!-- ===== SYMBOL ===== -->
+  <text x="520" y="110" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.14em">SYMBOL</text>
+  <g transform="translate(520,120) scale(1.65)">
+    <path fill="#011F55" d="M13 10h14a7 7 0 0 1 7 7v13h-4v4h4v13a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V17a7 7 0 0 1 7-7z"/>
+    <path fill="#0B3F78" d="M43 10h7l6 6v7a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5v-8a5 5 0 0 1 5-5z"/>
+    <rect x="38" y="32" width="18" height="22" rx="5" fill="#0B3F78"/>
+    <rect x="30" y="30" width="8" height="4" rx="1" fill="#1E82A2"/>
+  </g>
+
+  <!-- ===== WORDMARK ===== -->
+  <text x="720" y="110" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.14em">WORDMARK</text>
+  <text x="720" y="175" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="42" font-weight="600" letter-spacing="-0.03em">PixelForge</text>
+  <text x="720" y="210" fill="#0C1127" fill-opacity="0.45" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="500">Geometric sans · tracking 3% · weight 600</text>
+
+  <!-- ===== DARK ===== -->
+  <text x="1100" y="110" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.14em">DARK</text>
+  <rect x="1100" y="124" width="436" height="100" rx="12" fill="#0C1127"/>
+  <g transform="translate(1132,142) scale(0.9)">
+    <path fill="#1E82A2" d="M13 10h14a7 7 0 0 1 7 7v13h-4v4h4v13a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V17a7 7 0 0 1 7-7z"/>
+    <path fill="#5BA8C4" d="M43 10h7l6 6v7a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5v-8a5 5 0 0 1 5-5z"/>
+    <rect x="38" y="32" width="18" height="22" rx="5" fill="#5BA8C4"/>
+    <rect x="30" y="30" width="8" height="4" rx="1" fill="#A8D4E4"/>
+    <text x="80" y="42" fill="#FDFCFA" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="32" font-weight="600" letter-spacing="-0.03em">PixelForge</text>
+  </g>
+
+  <!-- divider -->
+  <line x1="64" y1="260" x2="1536" y2="260" stroke="#0C1127" stroke-opacity="0.1"/>
+
+  <!-- ===== LIGHT / MONO / APP / FAVICON ===== -->
+  <text x="64" y="300" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.14em">LIGHT</text>
+  <rect x="64" y="314" width="300" height="120" rx="12" fill="#FFFFFF" stroke="#0C1127" stroke-opacity="0.08"/>
+  <g transform="translate(96,344) scale(0.85)">
+    <path fill="#011F55" d="M13 10h14a7 7 0 0 1 7 7v13h-4v4h4v13a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V17a7 7 0 0 1 7-7z"/>
+    <path fill="#0B3F78" d="M43 10h7l6 6v7a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5v-8a5 5 0 0 1 5-5z"/>
+    <rect x="38" y="32" width="18" height="22" rx="5" fill="#0B3F78"/>
+    <rect x="30" y="30" width="8" height="4" rx="1" fill="#1E82A2"/>
+    <text x="80" y="42" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="600" letter-spacing="-0.03em">PixelForge</text>
+  </g>
+
+  <text x="400" y="300" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.14em">MONOCHROME</text>
+  <rect x="400" y="314" width="140" height="120" rx="12" fill="#FFFFFF" stroke="#0C1127" stroke-opacity="0.08"/>
+  <g transform="translate(438,344)" fill="#0C1127">
+    <path d="M13 10h14a7 7 0 0 1 7 7v13h-4v4h4v13a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V17a7 7 0 0 1 7-7z"/>
+    <path d="M43 10h7l6 6v7a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5v-8a5 5 0 0 1 5-5z" opacity="0.72"/>
+    <rect x="38" y="32" width="18" height="22" rx="5" opacity="0.72"/>
+    <rect x="30" y="30" width="8" height="4" rx="1"/>
+  </g>
+  <rect x="552" y="314" width="140" height="120" rx="12" fill="#0C1127"/>
+  <g transform="translate(590,344)" fill="#FDFCFA">
+    <path d="M13 10h14a7 7 0 0 1 7 7v13h-4v4h4v13a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V17a7 7 0 0 1 7-7z"/>
+    <path d="M43 10h7l6 6v7a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5v-8a5 5 0 0 1 5-5z" opacity="0.72"/>
+    <rect x="38" y="32" width="18" height="22" rx="5" opacity="0.72"/>
+    <rect x="30" y="30" width="8" height="4" rx="1"/>
+  </g>
+
+  <text x="740" y="300" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.14em">APP ICON</text>
+  <rect x="740" y="314" width="120" height="120" rx="28" fill="#0C1127"/>
+  <g transform="translate(768,342) scale(1)">
+    <path fill="#1E82A2" d="M13 10h14a7 7 0 0 1 7 7v13h-4v4h4v13a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V17a7 7 0 0 1 7-7z"/>
+    <path fill="#5BA8C4" d="M43 10h7l6 6v7a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5v-8a5 5 0 0 1 5-5z"/>
+    <rect x="38" y="32" width="18" height="22" rx="5" fill="#5BA8C4"/>
+    <rect x="30" y="30" width="8" height="4" rx="1" fill="#A8D4E4"/>
+  </g>
+
+  <text x="900" y="300" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.14em">FAVICON</text>
+  <g transform="translate(900,330)">
+    <rect width="32" height="32" rx="8" fill="#0C1127"/>
+    <path fill="#1E82A2" d="M7 7h8a3.5 3.5 0 0 1 3.5 3.5V14h-2v2h2v5.5A3.5 3.5 0 0 1 15 25H7a3.5 3.5 0 0 1-3.5-3.5v-11A3.5 3.5 0 0 1 7 7z"/>
+    <path fill="#5BA8C4" d="M21 7h3.5L27 9.5V13a2.5 2.5 0 0 1-2.5 2.5H21A2.5 2.5 0 0 1 18.5 13v-3.5A2.5 2.5 0 0 1 21 7z"/>
+    <rect x="18.5" y="17" width="9" height="8" rx="2.5" fill="#5BA8C4"/>
+    <rect x="15" y="14" width="4" height="2" rx="0.5" fill="#A8D4E4"/>
+  </g>
+  <g transform="translate(948,338) scale(0.5)">
+    <rect width="32" height="32" rx="8" fill="#0C1127"/>
+    <path fill="#1E82A2" d="M7 7h8a3.5 3.5 0 0 1 3.5 3.5V14h-2v2h2v5.5A3.5 3.5 0 0 1 15 25H7a3.5 3.5 0 0 1-3.5-3.5v-11A3.5 3.5 0 0 1 7 7z"/>
+    <path fill="#5BA8C4" d="M21 7h3.5L27 9.5V13a2.5 2.5 0 0 1-2.5 2.5H21A2.5 2.5 0 0 1 18.5 13v-3.5A2.5 2.5 0 0 1 21 7z"/>
+    <rect x="18.5" y="17" width="9" height="8" rx="2.5" fill="#5BA8C4"/>
+    <rect x="15" y="14" width="4" height="2" rx="0.5" fill="#A8D4E4"/>
+  </g>
+  <text x="900" y="390" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11">32 · 16</text>
+
+  <!-- Single accent -->
+  <text x="1100" y="300" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.14em">SINGLE ACCENT</text>
+  <rect x="1100" y="314" width="140" height="120" rx="12" fill="#FFFFFF" stroke="#0C1127" stroke-opacity="0.08"/>
+  <g transform="translate(1138,344)" fill="#1E82A2">
+    <path d="M13 10h14a7 7 0 0 1 7 7v13h-4v4h4v13a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V17a7 7 0 0 1 7-7z"/>
+    <path d="M43 10h7l6 6v7a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5v-8a5 5 0 0 1 5-5z" opacity="0.85"/>
+    <rect x="38" y="32" width="18" height="22" rx="5" opacity="0.85"/>
+    <rect x="30" y="30" width="8" height="4" rx="1"/>
+  </g>
+
+  <!-- Responsive -->
+  <text x="1280" y="300" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.14em">RESPONSIVE</text>
+  <g transform="translate(1280,330)">
+    <text x="0" y="0" fill="#0C1127" fill-opacity="0.35" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="10" letter-spacing="0.1em">L1 FULL</text>
+    <g transform="translate(0,10) scale(0.45)">
+      <path fill="#011F55" d="M13 10h14a7 7 0 0 1 7 7v13h-4v4h4v13a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V17a7 7 0 0 1 7-7z"/>
+      <path fill="#0B3F78" d="M43 10h7l6 6v7a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5v-8a5 5 0 0 1 5-5z"/>
+      <rect x="38" y="32" width="18" height="22" rx="5" fill="#0B3F78"/>
+      <rect x="30" y="30" width="8" height="4" rx="1" fill="#1E82A2"/>
+      <text x="80" y="42" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="600" letter-spacing="-0.03em">PixelForge</text>
+    </g>
+    <text x="0" y="55" fill="#0C1127" fill-opacity="0.35" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="10" letter-spacing="0.1em">L2 COMPACT</text>
+    <g transform="translate(0,65) scale(0.38)">
+      <path fill="#011F55" d="M13 10h14a7 7 0 0 1 7 7v13h-4v4h4v13a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V17a7 7 0 0 1 7-7z"/>
+      <path fill="#0B3F78" d="M43 10h7l6 6v7a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5v-8a5 5 0 0 1 5-5z"/>
+      <rect x="38" y="32" width="18" height="22" rx="5" fill="#0B3F78"/>
+      <rect x="30" y="30" width="8" height="4" rx="1" fill="#1E82A2"/>
+      <text x="80" y="42" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="600" letter-spacing="-0.04em">PixelForge</text>
+    </g>
+    <text x="180" y="55" fill="#0C1127" fill-opacity="0.35" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="10" letter-spacing="0.1em">L3 MICRO</text>
+    <g transform="translate(180,58) scale(0.5)">
+      <path fill="#011F55" d="M13 10h14a7 7 0 0 1 7 7v13h-4v4h4v13a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V17a7 7 0 0 1 7-7z"/>
+      <path fill="#0B3F78" d="M43 10h7l6 6v7a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5v-8a5 5 0 0 1 5-5z"/>
+      <rect x="38" y="32" width="18" height="22" rx="5" fill="#0B3F78"/>
+      <rect x="30" y="30" width="8" height="4" rx="1" fill="#1E82A2"/>
+    </g>
+  </g>
+
+  <line x1="64" y1="470" x2="1536" y2="470" stroke="#0C1127" stroke-opacity="0.1"/>
+
+  <!-- ===== COLOR PALETTE ===== -->
+  <text x="64" y="514" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.14em">COLOR PALETTE</text>
+  <g transform="translate(64,534)">
+    <rect width="112" height="72" rx="8" fill="#0C1127"/>
+    <text x="0" y="96" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600">Deep Navy</text>
+    <text x="0" y="114" fill="#0C1127" fill-opacity="0.45" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12">#0C1127</text>
+
+    <rect x="132" width="112" height="72" rx="8" fill="#011F55"/>
+    <text x="132" y="96" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600">Deep Blue</text>
+    <text x="132" y="114" fill="#0C1127" fill-opacity="0.45" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12">#011F55</text>
+
+    <rect x="264" width="112" height="72" rx="8" fill="#0B3F78"/>
+    <text x="264" y="96" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600">Primary Blue</text>
+    <text x="264" y="114" fill="#0C1127" fill-opacity="0.45" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12">#0B3F78</text>
+
+    <rect x="396" width="112" height="72" rx="8" fill="#1E82A2"/>
+    <text x="396" y="96" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600">Teal Blue</text>
+    <text x="396" y="114" fill="#0C1127" fill-opacity="0.45" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12">#1E82A2</text>
+
+    <rect x="528" width="112" height="72" rx="8" fill="#FDFCFA" stroke="#0C1127" stroke-opacity="0.12"/>
+    <text x="528" y="96" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600">Off White</text>
+    <text x="528" y="114" fill="#0C1127" fill-opacity="0.45" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12">#FDFCFA</text>
+
+    <!-- subtle gradient sample -->
+    <defs>
+      <linearGradient id="pfGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#011F55"/>
+        <stop offset="100%" stop-color="#1E82A2"/>
+      </linearGradient>
+    </defs>
+    <rect x="660" width="112" height="72" rx="8" fill="url(#pfGrad)"/>
+    <text x="660" y="96" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600">Controlled Grad</text>
+    <text x="660" y="114" fill="#0C1127" fill-opacity="0.45" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12">Deep ’ Teal</text>
+  </g>
+
+  <!-- ===== TYPOGRAPHY ===== -->
+  <text x="900" y="514" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.14em">TYPOGRAPHY</text>
+  <text x="900" y="568" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="48" font-weight="600" letter-spacing="-0.03em">PixelForge</text>
+  <text x="900" y="608" fill="#0C1127" fill-opacity="0.55" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="500" letter-spacing="-0.02em">Aa Bb Cc  0123456789</text>
+  <text x="900" y="640" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="13">Clarity City · geometric neo-grotesk · optical kerning</text>
+
+  <!-- ===== CONSTRUCTION DETAIL ===== -->
+  <text x="64" y="720" fill="#0C1127" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.14em">CONSTRUCTION DETAIL</text>
+  <rect x="64" y="740" width="520" height="200" rx="12" fill="#FFFFFF" stroke="#0C1127" stroke-opacity="0.08"/>
+  <g transform="translate(120,760) scale(2.4)">
+    <path fill="#011F55" d="M13 10h14a7 7 0 0 1 7 7v13h-4v4h4v13a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V17a7 7 0 0 1 7-7z"/>
+    <path fill="#0B3F78" d="M43 10h7l6 6v7a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5v-8a5 5 0 0 1 5-5z"/>
+    <rect x="38" y="32" width="18" height="22" rx="5" fill="#0B3F78"/>
+    <rect x="30" y="30" width="8" height="4" rx="1" fill="#1E82A2"/>
+    <!-- annotation ticks -->
+    <path stroke="#1E82A2" stroke-width="0.4" d="M30 28v-3M38 28v-3M30 25h8"/>
+  </g>
+  <text x="360" y="820" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="600">Interrupted edge</text>
+  <text x="360" y="842" fill="#0C1127" fill-opacity="0.5" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12">4px modular channel</text>
+  <text x="360" y="872" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="600">Precision weld</text>
+  <text x="360" y="894" fill="#0C1127" fill-opacity="0.5" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12">Teal forge join · distinctive detail</text>
+  <text x="360" y="924" fill="#0C1127" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="600">Chamfered module</text>
+  <text x="360" y="946" fill="#0C1127" fill-opacity="0.5" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="12">Fragmented ’ unified progression</text>
+
+  <!-- Concept statement -->
+  <rect x="640" y="740" width="896" height="200" rx="12" fill="#0C1127"/>
+  <text x="680" y="790" fill="#FDFCFA" fill-opacity="0.4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0.16em">CONCEPT</text>
+  <text x="680" y="840" fill="#FDFCFA" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="600" letter-spacing="-0.025em">Pixels ’ Reconstruction ’ Precision</text>
+  <text x="680" y="880" fill="#A8D4E4" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="500">Simple from a distance. Sophisticated up close. Memorable at every scale.</text>
+  <text x="680" y="920" fill="#FDFCFA" fill-opacity="0.45" font-family="Clarity City, Sora, ui-sans-serif, system-ui, sans-serif" font-size="13">Forged body · reconstructing modules · precision weld · modular 4px geometry</text>
+</svg>

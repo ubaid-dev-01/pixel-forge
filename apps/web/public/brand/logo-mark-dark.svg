@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="PixelForge">
+  <!-- Dark-mode mark  refined blue/teal on navy surfaces -->
+  <path fill="#1E82A2" d="M13 10h14a7 7 0 0 1 7 7v13h-4v4h4v13a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V17a7 7 0 0 1 7-7z"/>
+  <path fill="#5BA8C4" d="M43 10h7l6 6v7a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5v-8a5 5 0 0 1 5-5z"/>
+  <rect x="38" y="32" width="18" height="22" rx="5" fill="#5BA8C4"/>
+  <rect x="30" y="30" width="8" height="4" rx="1" fill="#A8D4E4"/>
+</svg>

@@ -4,7 +4,6 @@ import { TOOL_CATALOG } from "@pixelforge/shared";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { IsoIcon, toolIcon } from "@/components/brand/IsoIcons";
 
 export const metadata: Metadata = {
   title: "Image & video tools",
@@ -29,41 +28,36 @@ export default function ToolsPage() {
     <>
       <JsonLd data={breadcrumbLd} />
       <Navbar />
-      <main className="mx-auto max-w-[1100px] px-24 py-64">
-        <h1 className="font-display text-[2.25rem] leading-[1.15] tracking-[-0.02em]">
-          Image and video tools
-        </h1>
-        <p className="prose-measure mt-12 text-[1rem] leading-[1.6] text-text-secondary">
-          Sign in to run a job. Frame interpolation stays listed as coming soon until a licensed model is loaded.
-          Related:{" "}
-          <Link href="/docs/image-enhancement" className="text-accent hover:text-accent-hover">
-            enhancement docs
-          </Link>
-          ,{" "}
-          <Link href="/docs/background" className="text-accent hover:text-accent-hover">
-            background removal
-          </Link>
-          , and{" "}
-          <Link href="/docs/video" className="text-accent hover:text-accent-hover">
-            video tools
-          </Link>
-          .
-        </p>
-        <div className="mt-32 grid gap-16 md:grid-cols-2">
-          {TOOL_CATALOG.map((tool) => (
-            <Link
-              key={tool.id}
-              href={tool.href}
-              className="rounded-[12px] border border-border bg-surface p-24 shadow-soft transition-colors duration-[150ms] hover:border-border-strong"
-            >
-              <IsoIcon name={toolIcon(tool.slug)} className="h-80 w-96" title={tool.label} />
-              <h2 className="mt-12 text-[1.25rem] leading-[1.3] tracking-[-0.01em]">{tool.label}</h2>
-              <p className="mt-8 text-text-secondary">{tool.description}</p>
-              {tool.comingSoon ? (
-                <p className="mt-16 text-[12px] uppercase tracking-[0.05em] text-accent">Coming soon</p>
-              ) : null}
-            </Link>
-          ))}
+      <main className="pf-atmosphere relative min-h-[70vh]">
+        <div className="relative mx-auto max-w-[960px] px-24 py-72 sm:px-40">
+          <h1 className="font-display text-[clamp(2rem,4vw,3rem)] text-brand-navy">
+            Image and video tools
+          </h1>
+          <p className="prose-measure mt-14 text-[1.05rem] text-text-secondary">
+            Sign in to run a job. Frame interpolation stays listed as coming soon until a licensed model is loaded.
+          </p>
+          <ul className="mt-48 divide-y divide-border border-y border-border">
+            {TOOL_CATALOG.map((tool) => (
+              <li key={tool.id}>
+                <Link
+                  href={tool.href}
+                  className="group flex flex-col gap-6 py-22 transition-colors duration-200 sm:flex-row sm:items-baseline sm:justify-between sm:gap-32"
+                >
+                  <span className="font-display text-[1.25rem] tracking-[-0.02em] text-brand-navy group-hover:text-accent">
+                    {tool.label}
+                    {tool.comingSoon ? (
+                      <span className="ml-12 font-sans text-[11px] font-medium uppercase tracking-[0.1em] text-text-subtle">
+                        Soon
+                      </span>
+                    ) : null}
+                  </span>
+                  <span className="max-w-[48ch] text-[0.95rem] text-text-muted sm:text-right">
+                    {tool.description}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </main>
       <Footer />

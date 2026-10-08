@@ -5,39 +5,13 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { HeroDemo } from "@/components/landing/HeroDemo";
+import { Marquee } from "@/components/landing/Marquee";
+import { PolaroidStack } from "@/components/landing/PolaroidStack";
+import { PrecisionFrame } from "@/components/landing/PrecisionFrame";
+import { ProcessSteps } from "@/components/landing/ProcessSteps";
 import { BeforeAfterViewer } from "@/components/media/BeforeAfterViewer";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { IsoIcon, toolIcon, type IsoIconName } from "@/components/brand/IsoIcons";
 import { SAMPLES } from "@/lib/samples";
-
-const PILLARS: { icon: IsoIconName; title: string; copy: string }[] = [
-  {
-    icon: "restore",
-    title: "Restore with named presets",
-    copy: "Light, Balanced, or Strong — controlled repair, not a mystery filter.",
-  },
-  {
-    icon: "upscale",
-    title: "Upscale resolution honestly",
-    copy: "Real-ESRGAN or classical Lanczos. You choose the mode; we label the sample.",
-  },
-  {
-    icon: "compare",
-    title: "Compare before you download",
-    copy: "Slider, side-by-side, and zoom — inspect every job against the original.",
-  },
-  {
-    icon: "privacy",
-    title: "Private uploads by default",
-    copy: "Signed objects, retention you control, and no fake “100% private” claims.",
-  },
-];
-
-const USE_CASES: { icon: IsoIconName; title: string; copy: string }[] = [
-  { icon: "archive", title: "Archive labs", copy: "Stabilize and restore scans without a desktop suite." },
-  { icon: "studio", title: "Product studios", copy: "Remove backgrounds and keep the mask." },
-  { icon: "editorial", title: "Editorial desks", copy: "Upscale reference stills with a recorded processing mode." },
-];
 
 export const metadata: Metadata = {
   title: "PixelForge — restore images & video",
@@ -49,23 +23,15 @@ export const metadata: Metadata = {
 const faqs = [
   {
     q: "Does PixelForge run restoration models inside Vercel?",
-    a: "No. The Next.js app on Vercel handles UI and auth. Jobs go to the Node API, then to a Python worker. PyTorch, GFPGAN, Real-ESRGAN, and FFmpeg do not run in the web request path.",
+    a: "No. The Next.js app on Vercel handles UI and auth. Jobs go to the Node API, then to a Python worker.",
   },
   {
-    q: "Are the landing comparisons live GFPGAN runs?",
-    a: "No. Marketing comparisons are labeled Sample or Preprocessed. Live processing happens after you sign in and a worker is available.",
-  },
-  {
-    q: "What happens if no face is found?",
-    a: "Face restoration returns NO_FACES_DETECTED. PixelForge will not force GFPGAN on a landscape or product shot.",
+    q: "Are the landing comparisons live model runs?",
+    a: "No. Marketing comparisons are labeled Sample or Preprocessed. Live processing happens after you sign in.",
   },
   {
     q: "Do you keep files forever?",
-    a: "No. Default retention is 7 days. You can choose 24 hours or 30 days, and delete a job at any time. That removes input, output, and masks from object storage.",
-  },
-  {
-    q: "Is GFPGAN commercially licensed?",
-    a: "GFPGAN code is Apache 2.0. It incorporates a StyleGAN2 prior under NVIDIA terms that restrict some commercial uses of that component. See Model licenses.",
+    a: "No. Default retention is 7 days. Choose 24 hours or 30 days, or delete a job anytime.",
   },
 ];
 
@@ -81,11 +47,7 @@ export default function HomePage() {
     url: SITE_URL,
     description:
       "Professional image upscaling, restoration, background removal, and video enhancement platform.",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   };
 
   const faqLd = {
@@ -98,231 +60,336 @@ export default function HomePage() {
     })),
   };
 
+  const featured = TOOL_CATALOG.filter((t) =>
+    ["upscale", "restore", "background", "face", "cleanup", "video-upscale"].includes(t.slug),
+  );
+
   return (
     <>
       <JsonLd data={softwareLd} />
       <JsonLd data={faqLd} />
-      <Navbar />
+      <Navbar variant="hero" />
       <main>
-        {/* Full-bleed hero: brand copy + edge-to-edge compare plane */}
-        <section className="relative min-h-[min(92vh,820px)] overflow-hidden border-b border-border">
+        {/* Hero — brand first, one composition, full-bleed compare */}
+        <section className="relative min-h-[100svh] overflow-hidden bg-brand-navy">
+          <HeroDemo />
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_12%_10%,rgba(110,193,228,0.28),transparent_50%),radial-gradient(ellipse_at_85%_70%,rgba(30,130,162,0.12),transparent_45%)]"
+            className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgb(12_17_39/70%)_0%,rgb(12_17_39/25%)_42%,rgb(12_17_39/78%)_100%)]"
           />
-          <div className="relative grid min-h-[min(92vh,820px)] lg:grid-cols-[420px_minmax(0,1fr)] xl:grid-cols-[480px_minmax(0,1fr)]">
-            <div className="relative z-10 flex flex-col justify-center px-28 py-56 sm:px-40 lg:px-48 lg:py-64">
-              <p className="text-[13px] font-medium uppercase tracking-[0.16em] text-accent">
-                Restore · Enhance · Upscale · Sharpen · Transform
+          <div aria-hidden className="pf-grid-fade pointer-events-none absolute inset-0 opacity-40" />
+
+          <div className="relative z-20 flex min-h-[100svh] flex-col justify-end px-24 pb-56 sm:px-40 sm:pb-72 lg:px-56">
+            <div className="mx-auto w-full max-w-[1180px]">
+              <p className="pf-rise font-display text-[clamp(3.2rem,9vw,7.5rem)] font-bold tracking-[-0.055em] text-text-inverse">
+                PixelForge
               </p>
-              <h1 className="font-display mt-20 text-[clamp(2.85rem,5.5vw,4.85rem)] leading-[1.04] tracking-[-0.035em] text-brand-navy">
-                See every pixel come back.
+              <div className="pf-line-in mt-8 h-px w-80 max-w-[40%] bg-brand-teal" />
+              <h1 className="pf-rise-delay font-display mt-22 max-w-[22ch] text-[clamp(1.35rem,2.6vw,2rem)] font-semibold tracking-[-0.025em] text-text-inverse/95">
+                Restore the detail your images lost.
               </h1>
-              <p className="mt-24 max-w-[36ch] text-[1.125rem] leading-[1.65] text-text-secondary">
-                Image infrastructure for people who care about visual quality. Real jobs. Honest labels.
+              <p className="pf-fade-in mt-14 max-w-[38ch] text-[15px] leading-[1.65] text-text-inverse/70">
+                Professional restoration infrastructure — honest labels, real workers, no mystery filters.
               </p>
-              <div className="mt-36 flex flex-wrap gap-12">
-                <Button href="/signup">Try the tool</Button>
-                <Button href="/tools" variant="secondary">
-                  Explore tools
+              <div className="pf-fade-in mt-28 flex flex-wrap items-center gap-12">
+                <Button
+                  href="/signup"
+                  className="bg-brand-light px-22 text-[13px] tracking-[0.1em] text-brand-navy uppercase hover:bg-[#e8f4f8]"
+                >
+                  Open workspace
+                </Button>
+                <Button
+                  href="/tools"
+                  variant="secondary"
+                  className="border-text-inverse/40 px-22 text-[13px] tracking-[0.1em] text-text-inverse uppercase hover:bg-white/10"
+                >
+                  View tools
+                </Button>
+                <span className="hidden items-center gap-10 font-mono text-[10px] tracking-[0.16em] text-text-inverse/55 uppercase sm:inline-flex">
+                  <span className="h-6 w-6 rounded-full bg-brand-teal" />
+                  Drag to compare
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Marquee />
+
+        {/* Manifesto + archive stack */}
+        <section className="pf-atmosphere relative overflow-hidden">
+          <div className="mx-auto grid max-w-[1180px] items-center gap-48 px-24 py-96 sm:px-40 lg:grid-cols-2">
+            <div>
+              <p className="font-mono text-[11px] tracking-[0.18em] text-accent uppercase">Manifesto</p>
+              <h2 className="font-display mt-16 text-[clamp(2rem,4vw,3.4rem)] font-bold tracking-[-0.035em] text-brand-navy">
+                Precision for ruined frames.
+              </h2>
+              <p className="mt-24 max-w-[38ch] text-[1.12rem] leading-[1.7] text-text-secondary">
+                Classical pipelines and licensed models share one job system. If a model is missing,{" "}
+                <span className="border-b border-brand-teal/50 font-semibold text-brand-navy">
+                  we say so
+                </span>
+                . No silent swaps. No fake AI magic.
+              </p>
+              <ul className="mt-32 space-y-14">
+                {[
+                  "Signed uploads into private object storage",
+                  "Named processors — GFPGAN, Real-ESRGAN, FFmpeg, OpenCV",
+                  "Retention you control: 24h · 7d · 30d",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-12 text-[0.95rem] text-text-secondary">
+                    <span aria-hidden className="mt-8 h-6 w-6 shrink-0 bg-brand-teal" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-40 flex flex-wrap gap-12">
+                <Button href="/signup" className="uppercase tracking-[0.08em]">
+                  Start restoring
+                </Button>
+                <Button href="/docs" variant="secondary" className="uppercase tracking-[0.08em]">
+                  Read the docs
                 </Button>
               </div>
             </div>
-            <div className="relative min-h-[520px] w-full lg:min-h-full">
-              <HeroDemo />
-            </div>
+            <PolaroidStack />
           </div>
         </section>
 
-        <section className="bg-brand-navy">
-          <div className="mx-auto max-w-[1200px] px-24 py-72">
-            <div className="grid gap-48 sm:grid-cols-2 lg:grid-cols-4">
-              {PILLARS.map((item) => (
-                <article key={item.title} className="flex flex-col items-center text-center">
-                  <div className="flex h-140 w-full items-center justify-center">
-                    <IsoIcon name={item.icon} className="h-120 w-140" title={item.title} />
-                  </div>
-                  <h3 className="font-display mt-20 text-[1.2rem] leading-[1.3] text-text-inverse">
-                    {item.title}
-                  </h3>
-                  <p className="mt-10 text-[0.95rem] leading-[1.55] text-brand-light/90">{item.copy}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="border-t border-border">
-          <div className="mx-auto max-w-[1200px] px-24 py-64">
-            <h2 className="font-display text-[36px] md:text-[48px]">A complete tool ecosystem</h2>
-            <p className="mt-12 max-w-[640px] text-text-muted">
-              Classical OpenCV pipelines and licensed restoration models share one job system. If a model is missing, the tool says so.
-            </p>
-            <div className="mt-32 grid gap-16 sm:grid-cols-2 lg:grid-cols-3">
-              {TOOL_CATALOG.map((tool) => (
-                <Link
-                  key={tool.id}
-                  href={tool.href}
-                  className="rounded-[12px] border border-border bg-surface p-24 shadow-soft transition-colors duration-[150ms] hover:border-border-strong"
-                >
-                  <IsoIcon
-                    name={toolIcon(tool.slug)}
-                    className="h-80 w-96"
-                    title={tool.shortLabel}
-                  />
-                  <p className="mt-12 text-[12px] uppercase tracking-[0.05em] text-text-subtle">{tool.category}</p>
-                  <h3 className="mt-8 text-[1.25rem] leading-[1.3]">{tool.shortLabel}</h3>
-                  <p className="mt-8 text-[1rem] leading-[1.6] text-text-secondary">{tool.description}</p>
-                  {tool.comingSoon ? (
-                    <p className="mt-16 text-[12px] uppercase tracking-[0.05em] text-accent">Coming soon</p>
-                  ) : null}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <DemoSection
-          icon="upscale"
-          kicker="Image enhancement"
-          title="Upscale without inventing a second photograph."
-          sample={SAMPLES[0]}
-        />
-        <DemoSection
-          icon="background"
-          kicker="Background removal"
-          title="Cutouts with a mask you can inspect."
-          sample={SAMPLES[2]}
-        />
-        <DemoSection
-          icon="restore"
-          kicker="Photo restoration"
-          title="Repair grain and fade with named presets."
-          sample={SAMPLES[1]}
-        />
-        <DemoSection
-          icon="color"
-          kicker="Color restoration"
-          title="Tonal repair, not a general editor."
-          sample={SAMPLES[3]}
-        />
-        <DemoSection
-          icon="sharpen"
-          kicker="Landscape upscale"
-          title="Sharpen a low-resolution scene without claiming a new photograph."
-          sample={SAMPLES[4]}
-        />
-        <DemoSection
-          icon="cleanup"
-          kicker="Document cleanup"
-          title="Stains and grain come off the scan, not the words."
-          sample={SAMPLES[5]}
-        />
-        <DemoSection
-          icon="video-sharpen"
-          kicker="Video frame"
-          title="Still frames standing in for video sharpen — labeled as samples."
-          sample={SAMPLES[6]}
-        />
-
-        <section className="border-t border-border">
-          <div className="mx-auto grid max-w-[1200px] gap-32 px-24 py-64 lg:grid-cols-2">
-            <div>
-              <div className="mb-16 flex items-center gap-16">
-                <IsoIcon name="workflow" className="h-80 w-96" title="Workflow" />
-                <h2 className="font-display text-[36px]">Professional workflow</h2>
+        {/* Process rail */}
+        <section className="border-y border-border bg-bg-elevated">
+          <div className="mx-auto max-w-[1180px] px-24 py-80 sm:px-40">
+            <div className="mb-48 flex flex-wrap items-end justify-between gap-16">
+              <div>
+                <p className="font-mono text-[11px] tracking-[0.18em] text-accent uppercase">Pipeline</p>
+                <h2 className="font-display mt-12 text-[clamp(1.7rem,3vw,2.4rem)] font-bold tracking-[-0.03em] text-brand-navy">
+                  Upload → Process → Compare
+                </h2>
               </div>
-              <ol className="mt-24 space-y-16 text-[16px] text-text-muted">
-                <li>01 — Authenticate. Signed uploads only.</li>
-                <li>02 — Validate MIME, size, and magic bytes.</li>
-                <li>03 — Queue a job. The UI shows real worker stages.</li>
-                <li>04 — Compare original and output. Download a signed URL.</li>
-                <li>05 — History retains metadata after files expire.</li>
-              </ol>
-            </div>
-            <div>
-              <div className="mb-16 flex items-center gap-16">
-                <IsoIcon name="convert" className="h-80 w-96" title="Formats" />
-                <h2 className="font-display text-[36px]">Formats</h2>
-              </div>
-              <p className="mt-24 text-text-muted">Images: JPG, PNG, WebP, AVIF. Video: MP4, MOV, WebM, MKV in. MP4 and WebM out. Audio is preserved on video jobs that do not rasterize to a still.</p>
-              <div className="mt-48 mb-16 flex items-center gap-16">
-                <IsoIcon name="privacy" className="h-80 w-96" title="Privacy" />
-                <h2 className="font-display text-[36px]">Privacy</h2>
-              </div>
-              <p className="mt-24 text-text-muted">
-                Uploads are private objects with random keys. The Python worker never holds storage credentials. PixelForge does not claim “100% private” — operators of the worker can see files in memory during a job.
+              <p className="max-w-[32ch] text-[0.92rem] leading-[1.6] text-text-muted">
+                Heavy inference never runs inside a Vercel request. The web app stays fast; workers do the work.
               </p>
             </div>
+            <ProcessSteps />
           </div>
         </section>
 
-        <section className="border-t border-border">
-          <div className="mx-auto max-w-[1200px] px-24 py-64">
-            <h2 className="font-display text-[36px]">Use cases</h2>
-            <div className="mt-24 grid gap-16 md:grid-cols-3">
-              {USE_CASES.map((item) => (
-                <article key={item.title} className="rounded-[12px] border border-border bg-surface p-24 shadow-soft">
-                  <IsoIcon name={item.icon} className="h-96 w-112" title={item.title} />
-                  <h3 className="mt-16 text-[1.25rem] leading-[1.3]">{item.title}</h3>
-                  <p className="mt-8 text-text-secondary">{item.copy}</p>
+        {/* Editorial split — full-bleed visual */}
+        <section className="bg-brand-navy">
+          <div className="mx-auto grid max-w-[1280px] lg:grid-cols-[1.2fr_0.8fr]">
+            <PrecisionFrame className="relative min-h-[420px] overflow-hidden lg:min-h-[620px]" label="Preprocessed sample">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={SAMPLES[4]?.after ?? SAMPLES[0].after}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/75 via-transparent to-brand-navy/20" />
+              <div className="absolute inset-x-0 bottom-0 p-28 sm:p-40">
+                <p className="font-display max-w-[16ch] text-[clamp(1.6rem,3vw,2.5rem)] font-bold tracking-[-0.025em] text-text-inverse">
+                  Find what your image lost.
+                </p>
+              </div>
+            </PrecisionFrame>
+            <div className="flex flex-col justify-center gap-28 border-t border-white/10 px-28 py-48 sm:px-40 lg:border-t-0 lg:border-l">
+              <div className="relative overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={SAMPLES[3]?.before ?? SAMPLES[0].before}
+                  alt=""
+                  className="aspect-[16/10] w-full object-cover opacity-90"
+                />
+                <span className="absolute top-12 left-12 font-mono text-[10px] tracking-[0.16em] text-text-inverse/80 uppercase">
+                  Faded source
+                </span>
+              </div>
+              <div>
+                <h2 className="font-display text-[1.75rem] font-bold tracking-[-0.02em] text-text-inverse">
+                  Compare before you keep it
+                </h2>
+                <p className="mt-14 text-[0.98rem] leading-[1.65] text-text-inverse/65">
+                  Every finished job opens against the original. Slider, side-by-side, zoom — then download a signed URL.
+                </p>
+                <Button
+                  href="/signup"
+                  className="mt-28 bg-brand-light text-brand-navy uppercase tracking-[0.08em] hover:bg-[#e8f4f8]"
+                >
+                  Learn more
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Tools — editorial rows, not generic card grid */}
+        <section className="bg-bg">
+          <div className="mx-auto max-w-[1180px] px-24 py-96 sm:px-40">
+            <div className="flex flex-wrap items-end justify-between gap-16 border-b border-border pb-28">
+              <div>
+                <p className="font-mono text-[11px] tracking-[0.18em] text-accent uppercase">Toolkit</p>
+                <h2 className="font-display mt-12 text-[clamp(1.7rem,3vw,2.5rem)] font-bold tracking-[-0.03em] text-brand-navy">
+                  Essentials that deliver
+                </h2>
+              </div>
+              <Link
+                href="/tools"
+                className="text-[13px] font-semibold tracking-[0.1em] text-accent uppercase transition-colors hover:text-accent-hover"
+              >
+                See all →
+              </Link>
+            </div>
+            <ul className="divide-y divide-border">
+              {featured.map((tool, i) => (
+                <li key={tool.id}>
+                  <Link
+                    href={tool.href}
+                    className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-16 py-22 transition-colors sm:gap-24 sm:py-26"
+                  >
+                    <span className="font-mono text-[11px] tracking-[0.12em] text-text-subtle tabular-nums">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span>
+                      <span className="font-display text-[1.2rem] font-semibold tracking-[-0.02em] text-brand-navy transition-colors group-hover:text-accent sm:text-[1.35rem]">
+                        {tool.shortLabel}
+                      </span>
+                      <span className="mt-6 block max-w-[48ch] text-[0.9rem] leading-[1.55] text-text-muted">
+                        {tool.description}
+                      </span>
+                    </span>
+                    <span className="hidden font-mono text-[10px] tracking-[0.14em] text-text-subtle uppercase sm:block">
+                      {tool.category}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* Workspace band — navy, no decorative cards */}
+        <section className="relative overflow-hidden bg-brand-deep text-text-inverse">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.07]"
+            style={{
+              backgroundImage:
+                "linear-gradient(#FDFCFA 1px, transparent 1px), linear-gradient(90deg, #FDFCFA 1px, transparent 1px)",
+              backgroundSize: "40px 40px",
+            }}
+          />
+          <div className="relative mx-auto max-w-[1180px] px-24 py-88 sm:px-40">
+            <p className="font-mono text-[11px] tracking-[0.18em] text-brand-teal uppercase">Workspace</p>
+            <h2 className="font-display mt-14 max-w-[18ch] text-[clamp(1.8rem,3.5vw,2.8rem)] font-bold tracking-[-0.03em]">
+              Your complete restoration desk
+            </h2>
+            <p className="mt-16 max-w-[42ch] text-[1.05rem] leading-[1.65] text-text-inverse/70">
+              Jobs, history, presets, usage — one workspace. Heavy inference never runs on the web request path.
+            </p>
+            <div className="mt-48 grid gap-0 border-t border-white/15 sm:grid-cols-3">
+              {[
+                { src: SAMPLES[1].after, title: "Portrait repair", note: "Grain · compression" },
+                { src: SAMPLES[0].after, title: "Detail upscale", note: "Classical or AI" },
+                { src: SAMPLES[2].after, title: "Clean cutouts", note: "Mask you can keep" },
+              ].map((item, i) => (
+                <article
+                  key={item.title}
+                  className={`group relative overflow-hidden ${i > 0 ? "border-t border-white/15 sm:border-t-0 sm:border-l" : ""}`}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.src}
+                    alt=""
+                    className="aspect-[5/4] w-full object-cover opacity-85 transition-opacity duration-500 group-hover:opacity-100"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-navy/90 to-transparent p-20 pt-48">
+                    <p className="font-display text-[1.05rem] font-semibold">{item.title}</p>
+                    <p className="mt-4 font-mono text-[10px] tracking-[0.14em] text-brand-teal uppercase">
+                      {item.note}
+                    </p>
+                  </div>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="border-t border-border">
-          <div className="mx-auto max-w-[800px] px-24 py-64">
-            <h2 className="font-display text-[36px]">FAQ</h2>
-            <div className="mt-32 space-y-24">
+        {/* Live compare */}
+        <section className="bg-bg">
+          <div className="mx-auto max-w-[920px] px-24 py-96 sm:px-40">
+            <div className="text-center">
+              <p className="font-mono text-[11px] tracking-[0.18em] text-accent uppercase">Proof</p>
+              <h2 className="font-display mt-12 text-[clamp(1.7rem,3vw,2.4rem)] font-bold tracking-[-0.03em] text-brand-navy">
+                Drag the truth
+              </h2>
+              <p className="mx-auto mt-14 max-w-[40ch] text-text-muted">
+                Preprocessed sample — not a live model run. Real jobs start after sign-in.
+              </p>
+            </div>
+            <PrecisionFrame className="mt-40 overflow-hidden border border-border bg-bg-elevated shadow-soft">
+              <BeforeAfterViewer beforeSrc={SAMPLES[0].before} afterSrc={SAMPLES[0].after} />
+            </PrecisionFrame>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="border-t border-border bg-bg-elevated">
+          <div className="mx-auto max-w-[760px] px-24 py-80 sm:px-40">
+            <p className="font-mono text-[11px] tracking-[0.18em] text-accent uppercase">FAQ</p>
+            <h2 className="font-display mt-12 text-[2rem] font-bold text-brand-navy">Straight answers</h2>
+            <div className="mt-36 divide-y divide-border border-y border-border">
               {faqs.map((item) => (
-                <article key={item.q}>
-                  <h3 className="text-[18px]">{item.q}</h3>
-                  <p className="mt-8 text-text-muted">{item.a}</p>
-                </article>
+                <details key={item.q} className="group py-22">
+                  <summary className="cursor-pointer list-none font-semibold text-brand-navy marker:content-none [&::-webkit-details-marker]:hidden">
+                    <span className="flex items-start justify-between gap-16">
+                      <span className="text-[1.02rem] leading-[1.45]">{item.q}</span>
+                      <span
+                        aria-hidden
+                        className="mt-4 inline-flex h-22 w-22 shrink-0 items-center justify-center border border-border font-mono text-[14px] text-accent transition-transform group-open:rotate-45"
+                      >
+                        +
+                      </span>
+                    </span>
+                  </summary>
+                  <p className="mt-14 max-w-[52ch] text-[0.95rem] leading-[1.65] text-text-muted">{item.a}</p>
+                </details>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="border-t border-border">
-          <div className="mx-auto flex max-w-[1200px] flex-col items-start gap-24 px-24 py-64">
-            <h2 className="font-display text-[48px]">Open a workspace.</h2>
-            <Button href="/signup">Try the tool</Button>
+        {/* Final CTA */}
+        <section className="relative overflow-hidden bg-brand-navy text-text-inverse">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-40 -bottom-40 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgb(30_130_162/28%),transparent_68%)]"
+          />
+          <div className="relative mx-auto flex max-w-[1180px] flex-col items-start gap-20 px-24 py-96 sm:px-40">
+            <p className="pf-giant text-[clamp(3.5rem,12vw,8rem)] text-text-inverse/[0.12]">FORGE</p>
+            <h2 className="font-display -mt-24 max-w-[16ch] text-[clamp(1.7rem,3.2vw,2.6rem)] font-bold tracking-[-0.025em]">
+              Open a workspace. Bring every pixel back.
+            </h2>
+            <p className="max-w-[36ch] text-[15px] leading-[1.65] text-text-inverse/65">
+              Upscale, restore, denoise, cut out, enhance video — one honest pipeline.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-12">
+              <Button
+                href="/signup"
+                className="bg-brand-light text-brand-navy uppercase tracking-[0.1em] hover:bg-[#e8f4f8]"
+              >
+                Create account
+              </Button>
+              <Button
+                href="/tools"
+                variant="secondary"
+                className="border-text-inverse/35 text-text-inverse uppercase tracking-[0.1em] hover:bg-white/10"
+              >
+                Browse tools
+              </Button>
+            </div>
           </div>
         </section>
       </main>
       <Footer />
     </>
-  );
-}
-
-function DemoSection({
-  icon,
-  kicker,
-  title,
-  sample,
-}: {
-  icon: IsoIconName;
-  kicker: string;
-  title: string;
-  sample: (typeof SAMPLES)[number];
-}) {
-  return (
-    <section className="border-t border-border">
-      <div className="mx-auto grid max-w-[1200px] gap-32 px-24 py-64 lg:grid-cols-2 lg:items-center">
-        <div>
-          <IsoIcon name={icon} className="mb-16 h-88 w-108" title={kicker} />
-          <p className="text-[12px] uppercase tracking-[0.05em] text-accent">{kicker}</p>
-          <h2 className="font-display mt-12 text-[1.75rem] leading-[1.2] tracking-[-0.02em] md:text-[2.25rem]">
-            {title}
-          </h2>
-          <p className="mt-8 font-mono text-[12px] uppercase tracking-[0.05em] text-accent">{sample.label}</p>
-          <p className="prose-measure mt-16 text-[1rem] leading-[1.6] text-text-secondary">{sample.note}</p>
-        </div>
-        <BeforeAfterViewer beforeSrc={sample.before} afterSrc={sample.after} />
-      </div>
-    </section>
   );
 }

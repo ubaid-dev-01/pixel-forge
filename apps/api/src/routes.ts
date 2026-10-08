@@ -152,7 +152,11 @@ export function createRouter(opts: {
       outputKey,
       def.kind === "video" ? "video/mp4" : "image/png",
     );
-    const webhookUrl = `${env.API_PUBLIC_URL.replace(/\/$/, "")}/api/webhooks/provider`;
+    // On Vercel, prefer the deployment URL so the Python service can webhook back.
+    const publicBase = process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : env.API_PUBLIC_URL;
+    const webhookUrl = `${publicBase.replace(/\/$/, "")}/api/webhooks/provider`;
     try {
       const queued = await provider.enqueue({
         jobId: created.jobId,
@@ -307,14 +311,19 @@ export function createRouter(opts: {
       return;
     }
     const site = env.CONVEX_SITE_URL ?? env.CONVEX_URL.replace(".convex.cloud", ".convex.site");
-    await fetch(`${site.replace(/\/$/, "")}/internal/jobs/status`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "x-pixelforge-service": env.API_SERVICE_SECRET,
-      },
-      body: JSON.stringify(body.data),
-    });
+    try {
+      await fetch(`${site.replace(/\/$/, "")}/internal/jobs/status`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-pixelforge-service": env.API_SERVICE_SECRET,
+        },
+        body: JSON.stringify(body.data),
+        signal: AbortSignal.timeout(8_000),
+      });
+    } catch {
+      // Never stall the Python worker on Convex outages — status sync is best-effort.
+    }
     res.json({ ok: true });
   });
 

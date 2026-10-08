@@ -21,10 +21,11 @@ const schema = z.object({
   SIGNED_UPLOAD_TTL_SECONDS: z.coerce.number().default(900),
   SIGNED_DOWNLOAD_TTL_SECONDS: z.coerce.number().default(600),
   PROCESSING_PROVIDER: z.enum(["local", "replicate", "gpu-worker", "mock"]).default("local"),
-  PROCESSING_PROVIDER_URL: z.string().url().optional(),
+  // Injected by Vercel Services binding, or set manually for local/dev.
+  PROCESSING_PROVIDER_URL: z.string().min(1).optional(),
   PROCESSING_PROVIDER_TOKEN: z.string().optional(),
   PROCESSING_WEBHOOK_SECRET: z.string().min(16),
-  API_PUBLIC_URL: z.string().url().default("http://localhost:8080"),
+  API_PUBLIC_URL: z.string().min(1).default("http://localhost:8080"),
   MAX_IMAGE_BYTES: z.coerce.number().default(50 * 1024 * 1024),
   MAX_VIDEO_BYTES: z.coerce.number().default(500 * 1024 * 1024),
 });

@@ -7,8 +7,9 @@ export function createProvider(env: ApiEnv): ProcessingProvider {
   if (env.PROCESSING_PROVIDER === "mock") {
     return new MockProvider();
   }
-  const url = env.PROCESSING_PROVIDER_URL;
-  const token = env.PROCESSING_PROVIDER_TOKEN;
+  // Prefer live process.env so Vercel Services bindings win at runtime.
+  const url = process.env.PROCESSING_PROVIDER_URL ?? env.PROCESSING_PROVIDER_URL;
+  const token = process.env.PROCESSING_PROVIDER_TOKEN ?? env.PROCESSING_PROVIDER_TOKEN;
   if (!url || !token) {
     return new MockProvider();
   }
