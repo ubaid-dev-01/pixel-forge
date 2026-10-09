@@ -10,7 +10,7 @@ import { BeforeAfterViewer } from "@/components/media/BeforeAfterViewer";
 import { JobProgress } from "@/components/jobs/JobProgress";
 import { Button } from "@/components/ui/Button";
 import { Field, Select } from "@/components/ui/Field";
-import { apiFetch } from "@/lib/api";
+import { apiFetch, fetchAuthorizedDownload } from "@/lib/api";
 import { refs } from "@/lib/convexRefs";
 import { estimatedUpscaleSize } from "@pixelforge/shared";
 import { isErrorCode } from "@pixelforge/shared";
@@ -25,6 +25,7 @@ export default function ToolPage({ params }: { params: Promise<{ slug: string }>
   const [error, setError] = useState<ReturnType<typeof describeError> | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
+  const [outputName, setOutputName] = useState("output");
   const [busy, setBusy] = useState(false);
   const [scale, setScale] = useState<1 | 2 | 4>(2);
   const job = useQuery(refs.jobsGet, jobId ? { jobId } : "skip");
@@ -40,19 +41,25 @@ export default function ToolPage({ params }: { params: Promise<{ slug: string }>
       return;
     }
     let cancelled = false;
+    let objectUrl: string | null = null;
+    setOutputUrl(null);
     void (async () => {
       try {
-        const res = await apiFetch<{ downloadUrl: string }>(
-          `/files/${job.outputFileId}/download`,
-          token,
-        );
-        if (!cancelled) setOutputUrl(res.downloadUrl);
+        const download = await fetchAuthorizedDownload(`/files/${job.outputFileId}/download`, token);
+        if (cancelled) {
+          if (download.objectUrl) URL.revokeObjectURL(download.url);
+          return;
+        }
+        if (download.objectUrl) objectUrl = download.url;
+        setOutputName(download.filename);
+        setOutputUrl(download.url);
       } catch {
         if (!cancelled) setOutputUrl(null);
       }
     })();
     return () => {
       cancelled = true;
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
     };
   }, [token, job?.outputFileId, job?.status]);
 
@@ -221,7 +228,7 @@ export default function ToolPage({ params }: { params: Promise<{ slug: string }>
                   <a
                     className="inline-flex min-h-44 items-center justify-center rounded-[8px] bg-accent px-16 text-[14px] font-medium text-accent-fg"
                     href={outputUrl}
-                    download
+                    download={outputName}
                     target="_blank"
                     rel="noreferrer"
                   >

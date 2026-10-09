@@ -2,7 +2,8 @@
 
 /* Comparison viewer — images always cover the frame (object-cover). */
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { frameLoadFailure } from "@/lib/download";
 
 const ZOOMS = [25, 50, 100, 200, "fit"] as const;
 
@@ -35,6 +36,10 @@ export function BeforeAfterViewer({
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [loadError, setLoadError] = useState(false);
   const dragging = useRef(false);
+
+  useEffect(() => {
+    setLoadError(false);
+  }, [beforeSrc, afterSrc]);
 
   const onPointer = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
     const bounds = event.currentTarget.getBoundingClientRect();
@@ -93,8 +98,14 @@ export function BeforeAfterViewer({
 
       {loadError ? (
         <p className="rounded-[12px] border border-danger p-16 text-[14px] text-text-muted">
-          Sample media failed to load. From the repo root run{" "}
-          <code className="font-mono text-text">npm run fetch:samples</code>.
+          {frameLoadFailure(beforeSrc, afterSrc) === "samples" ? (
+            <>
+              Sample media failed to load. From the repo root run{" "}
+              <code className="font-mono text-text">npm run fetch:samples</code>.
+            </>
+          ) : (
+            "This result could not be displayed. Sign in again, then process the image once more."
+          )}
         </p>
       ) : null}
 

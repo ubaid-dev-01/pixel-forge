@@ -250,7 +250,7 @@ export const DOC_PAGES: DocPage[] = [
         ["GET", "/api/jobs/:id", "Bearer"],
         ["POST", "/api/jobs/:id/cancel", "Bearer"],
         ["DELETE", "/api/jobs/:id", "Bearer"],
-        ["GET", "/api/files/:id/download", "Bearer"],
+        ["GET", "/api/files/:id/download", "Bearer — JSON downloadUrl, or streamed private blob"],
         ["POST", "/api/webhooks/provider", "HMAC or processor token"],
       ]},
       { type: "h2", id: "job-body", text: "Create job" },
@@ -369,6 +369,7 @@ export const DOC_PAGES: DocPage[] = [
     blocks: [
       { type: "table", headers: ["Symptom", "Check"], rows: [
         ["Landing samples blank", "Confirm /samples/*.jpg exist; run npm run fetch:samples"],
+        ["Output image 400 or 403", "Private Blob URLs are not public. The download route streams the file; the dashboard must not use *.private.blob.vercel-storage.com as an image source."],
         ["Sign up disabled", "NEXT_PUBLIC_CONVEX_URL plus JWT_PRIVATE_KEY / JWKS"],
         ["PROVIDER_UNAVAILABLE", "API + worker running; PROCESSING_PROVIDER_URL"],
         ["MODEL_UNAVAILABLE", "pip install gpu extra; allow model download"],
