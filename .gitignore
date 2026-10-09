@@ -5,8 +5,6 @@ build
 coverage
 .turbo
 .vercel
-.env
-.env.local
 .env.*.local
 .convex-auth-keys.env
 !.env.example
@@ -36,7 +34,6 @@ JWT_PRIVATE_KEY
 *.pem
 
 .vercel
-.env*
 
 .auth-signup.json
 .convex-dev-env.txt
@@ -45,3 +42,4 @@ JWT_PRIVATE_KEY
 .auth-signup.json
 .convex-dev-env.txt
 
+config.bat
