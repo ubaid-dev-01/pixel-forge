@@ -12,6 +12,5 @@ vercel --prod --yes
 ```
 
 ## Pipeline
-1. Native Git: `vercel git connect https://github.com/ubaid-dev-01/pixel-forge.git`
-2. GitHub Actions: set secrets `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
+GitHub is connected to the Vercel project. A push to `main` deploys production. Do not add a second GitHub Actions deploy; it needs `VERCEL_TOKEN` and would deploy twice.
 
